@@ -28,22 +28,22 @@ class ProfileScreen extends StatelessWidget {
         
         children: [
 
-        Assets.images.a3899618.image(height: 100),
+        Assets.images.a3899618.image(height: 120),
         SizedBox(height: 12,),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
 
-          Assets.icons.write.image(color: SolidColors.seeMore),
+          Assets.icons.write.image(color: SolidColors.seeMore,height: 30),
           SizedBox(width: 8,),
           Text(MyStrings.imageProfileEdit,style: textTheme.headlineMedium,)
 
 
         ],),
         SizedBox(height: 60,),
-        Text("فاطمه امیری",style: textTheme.bodySmall,),
+        Text("فاطمه امیری",style: textTheme.titleMedium,),
         SizedBox(height: 12,),
-        Text("fatemeamiri@gmail.com",style: textTheme.bodySmall,),
+        Text("fatemeamiri@gmail.com",style: textTheme.titleMedium,),
         SizedBox(height: 40,),
         TechDivider(size: size),
         InkWell(
@@ -53,7 +53,7 @@ class ProfileScreen extends StatelessWidget {
           splashColor: SolidColors.primaryColor,
           child:   SizedBox(
             height: 45,
-            child: Center(child: Text(MyStrings.myFavoriteBlog,style: textTheme.bodySmall,))),
+            child: Center(child: Text(MyStrings.myFavoriteBlog,style: textTheme.titleSmall,))),
         ),
         TechDivider(size: size),
         InkWell(
@@ -63,7 +63,7 @@ class ProfileScreen extends StatelessWidget {
           splashColor: SolidColors.primaryColor,
           child:   SizedBox(
             height: 45,
-            child: Center(child: Text(MyStrings.myFavoritePodcast,style: textTheme.bodySmall,))),
+            child: Center(child: Text(MyStrings.myFavoritePodcast,style: textTheme.titleSmall,))),
         ),
         TechDivider(size: size),
         InkWell(
@@ -73,7 +73,7 @@ class ProfileScreen extends StatelessWidget {
           splashColor: SolidColors.primaryColor,
           child:   SizedBox(
             height: 45,
-            child: Center(child: Text(MyStrings.logOut,style: textTheme.bodySmall,))),
+            child: Center(child: Text(MyStrings.logOut,style: textTheme.titleSmall,))),
         ),
       SizedBox(height: 60,)
         
