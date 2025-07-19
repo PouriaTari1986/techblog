@@ -10,6 +10,7 @@ class MyStrings {
   static const String myFavoriteBlog = "مقالات مورد علاقه من";
   static const String myFavoritePodcast = "پادکست های مورد علاقه من";
   static const String logOut = "خروج از حساب کاربری";
+  static const String entrEmial = " لطفا ایمیلت رو وارد کن";
   static const String letsGo = "بزن بریم";
   static const String imageProfileEdit = "ویرایش عکس پروفایل";
   static const String welcome = "به تک‌بلاگ خوش اومدی\n\nبرای ارسال مطلب و پادکست باید حتما ثبت نام کنی";

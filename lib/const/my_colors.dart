@@ -12,6 +12,8 @@ static const Color subText = Color.fromARGB(255, 97, 97, 97);
 
 static const Color scaffoldBackGround = Color.fromARGB(255, 255, 255, 255);
 
+static const Color hintText = Color.fromARGB(255, 163, 159, 159);
+
 static const Color statusBarColor = Color.fromARGB(255, 255, 255, 255);
 
 static const Color systemNavigationBarColor = Color.fromARGB(255, 255, 255, 255);

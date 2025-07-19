@@ -27,18 +27,18 @@ class ProfileScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         
         children: [
-
+      
         Assets.images.a3899618.image(height: 120),
         SizedBox(height: 12,),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
+      
           Assets.icons.write.image(color: SolidColors.seeMore,height: 30),
           SizedBox(width: 8,),
           Text(MyStrings.imageProfileEdit,style: textTheme.headlineMedium,)
-
-
+      
+      
         ],),
         SizedBox(height: 60,),
         Text("فاطمه امیری",style: textTheme.titleMedium,),
