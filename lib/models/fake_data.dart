@@ -34,6 +34,7 @@ HashTagModel(title:"هوش مصنوعی"),
 
 
 ];
+late List<HashTagModel> myCat;
 List<BlogModel> blogList = [
       BlogModel(
       id: 1, 

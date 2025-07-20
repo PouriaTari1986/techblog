@@ -11,7 +11,10 @@ class MyStrings {
   static const String myFavoritePodcast = "پادکست های مورد علاقه من";
   static const String logOut = "خروج از حساب کاربری";
   static const String entrEmial = " لطفا ایمیلت رو وارد کن";
+  static const String activatedCode = "کد فعال سازی رو وارد کن";
   static const String letsGo = "بزن بریم";
   static const String imageProfileEdit = "ویرایش عکس پروفایل";
+  static const String selectingCat = "دسته بندی هایی که دوست داری رو انتخاب کن";
   static const String welcome = "به تک‌بلاگ خوش اومدی\n\nبرای ارسال مطلب و پادکست باید حتما ثبت نام کنی";
+static const String mayCat = "\nتبریک میگم ، ایمیل با موفقیت تایید شد\nلطفا اطلاعات ثبت نام رو کامل کن";
 }
