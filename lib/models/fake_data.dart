@@ -34,7 +34,17 @@ HashTagModel(title:"هوش مصنوعی"),
 
 
 ];
-late List<HashTagModel> myCat;
+
+List<HashTagModel> selectedTags=[];
+
+
+
+
+
+
+
+
+
 List<BlogModel> blogList = [
       BlogModel(
       id: 1, 

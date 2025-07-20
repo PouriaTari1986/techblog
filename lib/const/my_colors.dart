@@ -4,6 +4,8 @@ class SolidColors{
 
 static const Color colorTitles = Color.fromARGB(255, 40, 107, 184);
 
+static const Color surfaceColor = Color.fromARGB(255, 242, 242, 242);
+
 static const Color dividerColor = Color.fromARGB(255, 112, 112, 112);
 
 static const Color textTitles = Color.fromARGB(255, 0, 0, 0);

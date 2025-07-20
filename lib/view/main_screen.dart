@@ -10,11 +10,17 @@ class MainScrren extends StatefulWidget {
 
   @override
   State<MainScrren> createState() => _MainScrrenState();
+
+
+
 }
+final GlobalKey<ScaffoldState> _key = GlobalKey();
+
 
 class _MainScrrenState extends State<MainScrren> {
+  var selectedPageIndex = 0;
 
- var selectedPageIndex = 0;
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -22,52 +28,104 @@ class _MainScrrenState extends State<MainScrren> {
     var textTheme = Theme.of(context).textTheme;
     double bodyMargin = size.width / 10;
 
-   
-
-
-
     return SafeArea(
       child: Scaffold(
+        key: _key,
+        drawer: Drawer(
+          backgroundColor: SolidColors.scaffoldBackGround,
+          child: Padding(
+            padding:  EdgeInsets.only(right: bodyMargin,left: bodyMargin),
+            child: ListView(
+              children: [
+                DrawerHeader(
+                  child: Center(child: Assets.images.logo.image(scale: 3)),
+                ),
+            
+            
+                ListTile(
+                  title: Text("پروفایل کاربری", style: textTheme.titleMedium),
+                  onTap: () {},
+                ),
+            
+                Divider(color: SolidColors.dividerColor),
+            
+                ListTile(
+                  title: Text("درباره تک بلاگ", style: textTheme.titleMedium),
+                  onTap: () {},
+                ),
+            
+                Divider(color: SolidColors.dividerColor),
+            
+                ListTile(
+                  title: Text("اشتراک گذاری تک بلاگ", style: textTheme.titleMedium),
+                  onTap: () {},
+                ),
+            
+                Divider(color: SolidColors.dividerColor),
+            
+                ListTile(
+                  title: Text("تک بلاگ در گیت هاب", style: textTheme.titleMedium),
+                  onTap: () {},
+                ),
+                Divider(color: SolidColors.dividerColor),
+              ],
+            ),
+          ),
+        ),
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           elevation: 0,
           backgroundColor: SolidColors.scaffoldBackGround,
-          title:  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Icon(Icons.menu, color: Colors.black),
-            
-                      Assets.images.logo.image(height: size.height / 14),
-            
-                      Icon(Icons.search, color: Colors.black),
-                    ],
-                  ),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              InkWell(
+                onTap: () {
+                  
+                  _key.currentState!.openDrawer();
+                  
+                },
+                child: Icon(Icons.menu, color: Colors.black)),
+
+              Assets.images.logo.image(height: size.height / 14),
+
+              Icon(Icons.search, color: Colors.black),
+            ],
+          ),
         ),
 
-
-          
         body: Stack(
           children: [
             Positioned.fill(
               child: IndexedStack(
                 index: selectedPageIndex,
                 children: [
-                  HomeScreen(bodyMargin: bodyMargin, textTheme: textTheme, size: size),
-                  ProfileScreen(bodyMargin: bodyMargin, textTheme: textTheme, size: size)
+                  HomeScreen(
+                    bodyMargin: bodyMargin,
+                    textTheme: textTheme,
+                    size: size,
+                  ),
+                  ProfileScreen(
+                    bodyMargin: bodyMargin,
+                    textTheme: textTheme,
+                    size: size,
+                  ),
                 ],
-              )
               ),
-         
-            // ignore: avoid_types_as_parameter_names
-            BottomNavigation(size: size, bodyMargin: bodyMargin, changeScreen: (int value) {  
-              setState(() {
-                selectedPageIndex = value;
-              });
+            ),
 
-            },)
+            // ignore: avoid_types_as_parameter_names
+            BottomNavigation(
+              size: size,
+              bodyMargin: bodyMargin,
+              changeScreen: (int value) {
+                setState(() {
+                  selectedPageIndex = value;
+                });
+              },
+            ),
           ],
-        )
-      
-         
+        ),
       ),
     );
   }
@@ -77,58 +135,71 @@ class BottomNavigation extends StatelessWidget {
   const BottomNavigation({
     super.key,
     required this.size,
-    required this.bodyMargin, 
+    required this.bodyMargin,
     required this.changeScreen,
-    
   });
 
   final Size size;
   final double bodyMargin;
-  final Function(int value) changeScreen; 
+  final Function(int value) changeScreen;
 
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: 0,
+      bottom: 8,
       right: 0,
       left: 0,
       child: Container(
-        height: size.height/10,
+        height: size.height / 10,
         decoration: BoxDecoration(
-          gradient: LinearGradient(colors: GradiantColors.bottomNavigationbg,
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter)
+          gradient: LinearGradient(
+            colors: GradiantColors.bottomNavigationbg,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
         ),
         child: Padding(
-          padding:  EdgeInsets.only(right: bodyMargin,left: bodyMargin),
+          padding: EdgeInsets.only(right: bodyMargin, left: bodyMargin),
           child: Container(
-            height: size.height/8,
+            height: size.height / 8,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(35)),
-              gradient: LinearGradient(colors: GradiantColors.bottomNavigation)
+              gradient: LinearGradient(colors: GradiantColors.bottomNavigation),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-          
                 IconButton(
-                  onPressed: (()=>changeScreen(0)), 
-                  icon: ImageIcon(Assets.icons.home.provider(),size: 40,color: Colors.white,)),
-          
+                  onPressed: (() => changeScreen(0)),
+                  icon: ImageIcon(
+                    Assets.icons.home.provider(),
+                    size: 40,
+                    color: Colors.white,
+                  ),
+                ),
+
                 IconButton(
-                  onPressed: (){}, 
-                  icon: ImageIcon(Assets.icons.register.provider(),size: 40,color: Colors.white,)),
-          
+                  onPressed: () {},
+                  icon: ImageIcon(
+                    Assets.icons.register.provider(),
+                    size: 40,
+                    color: Colors.white,
+                  ),
+                ),
+
                 IconButton(
-                  onPressed: (()=>changeScreen(1)), 
-                  icon: ImageIcon(Assets.icons.user.provider(),size: 40,color: Colors.white,)),
+                  onPressed: (() => changeScreen(1)),
+                  icon: ImageIcon(
+                    Assets.icons.user.provider(),
+                    size: 40,
+                    color: Colors.white,
+                  ),
+                ),
               ],
             ),
           ),
-          
         ),
       ),
     );
   }
 }
-

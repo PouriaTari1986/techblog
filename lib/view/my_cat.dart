@@ -1,8 +1,7 @@
-
-
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:my_blog/const/my_colors.dart';
 import 'package:my_blog/const/my_strings.dart';
 import 'package:my_blog/gen/assets.gen.dart';
 import 'package:my_blog/models/fake_data.dart';
@@ -18,11 +17,9 @@ class MyCat extends StatefulWidget {
 class _MyCatState extends State<MyCat> {
   @override
   Widget build(BuildContext context) {
-
     var size = MediaQuery.of(context).size;
     var textTheme = Theme.of(context).textTheme;
-    double bodyMargin = size.width/10;
-
+    double bodyMargin = size.width / 10;
 
     return SafeArea(
       child: Scaffold(
@@ -33,85 +30,152 @@ class _MyCatState extends State<MyCat> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 32,),
+                SizedBox(height: 32),
                 SvgPicture.asset(Assets.images.welcome.path, height: 120),
-            
-            
+
                 const SizedBox(height: 16),
-            
+
                 RichText(
                   textAlign: TextAlign.center,
                   text: TextSpan(
-                  
-                  text: MyStrings.mayCat,style: textTheme.titleMedium )),
+                    text: MyStrings.mayCat,
+                    style: textTheme.titleMedium,
+                  ),
+                ),
 
-                  Padding(
-                    padding:  EdgeInsets.only(left: bodyMargin, right: bodyMargin,top: 16),
-                    child: TextField(
-                      textAlign: TextAlign.start,
-                      decoration: InputDecoration(
-                        alignLabelWithHint: true,
-                        hintText: "نام و نام خانوادگی",
-                        hintStyle: textTheme.displayLarge,
-                      ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: bodyMargin,
+                    right: bodyMargin,
+                    top: 16,
+                  ),
+                  child: TextField(
+                    textAlign: TextAlign.start,
+                    decoration: InputDecoration(
+                      alignLabelWithHint: true,
+                      hintText: "نام و نام خانوادگی",
+                      hintStyle: textTheme.displayLarge,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(25),
-                    child: Text(MyStrings.selectingCat,style: textTheme.titleMedium,textAlign: TextAlign.center,),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(25),
+                  child: Text(
+                    MyStrings.selectingCat,
+                    style: textTheme.titleMedium,
+                    textAlign: TextAlign.center,
                   ),
+                ),
 
-                  SizedBox(
-                    height: size.height/8.6,
-                    width: size.width/1.08,
+                Padding(
+                  padding: EdgeInsets.only(left: bodyMargin, right: bodyMargin),
+                  child: SizedBox(
+                    height: size.height / 8.8,
+                    width: double.infinity,
                     child: GridView.builder(
                       physics: ClampingScrollPhysics(),
                       scrollDirection: Axis.horizontal,
                       itemCount: tagList.length,
                       shrinkWrap: true,
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 8,
-                        crossAxisSpacing: 8,
-                        childAspectRatio: 0.37,
-                      ),
-                    
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            mainAxisSpacing: 8,
+                            crossAxisSpacing: 8,
+                            childAspectRatio: 0.38,
+                          ),
+
                       itemBuilder: (context, index) {
                         return InkWell(
                           onTap: () {
                             setState(() {
-                              myCat.add(tagList[index]);
-                              tagList.removeAt(index);
+                              if (!selectedTags.contains(tagList[index])) {
+                                selectedTags.add(tagList[index]);
+                              }else{
+                                // ignore: avoid_print
+                                print("${tagList[index].title} exist");
+                              }
                             });
                           },
-                          
-                          child: TagList(textTheme: textTheme, index: index));
+
+                          child: TagList(textTheme: textTheme, index: index),
+                        );
                       },
                     ),
                   ),
-                  SizedBox(height: 16),
-                  SvgPicture.asset(Assets.images.arrow.path, height: 70),
-                  SizedBox(height: 16),
-                   SizedBox(
-                    height: size.height/8.6,
-                    width: size.width/1.08,
+                ),
+                SizedBox(height: 16),
+                SvgPicture.asset(Assets.images.arrow.path, height: 50),
+
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: bodyMargin,
+                    right: bodyMargin,
+                    top: 16,
+                  ),
+                  //selectedTags
+                  child: SizedBox(
+                    height: size.height / 8.8,
+                    width: double.infinity,
                     child: GridView.builder(
                       physics: ClampingScrollPhysics(),
                       scrollDirection: Axis.horizontal,
-                      itemCount: tagList.length,
+                      itemCount: selectedTags.length,
                       shrinkWrap: true,
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 8,
-                        crossAxisSpacing: 8,
-                        childAspectRatio: 0.37,
-                      ),
-                    
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            mainAxisSpacing: 8,
+                            crossAxisSpacing: 8,
+                            childAspectRatio: 0.2,
+                          ),
+
                       itemBuilder: (context, index) {
-                        return TagList(textTheme: textTheme, index: index);
+                        return Container(
+                          height: 60,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(24)),
+                            color: SolidColors.surfaceColor,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(width: 8),
+                                Text(
+                                  selectedTags[index].title,
+                                  style: textTheme.titleMedium,
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      selectedTags.removeAt(index);
+                                    });
+                                  },
+
+                                  child: Icon(
+                                    CupertinoIcons.delete,
+                                    color: Colors.grey,
+                                    size: 20,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
                       },
                     ),
                   ),
+                ),
+                ElevatedButton(
+                  onPressed: (() {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => const MyCat()),
+                    );
+                  }),
+                  child: Text("ادامه"),
+                ),
               ],
             ),
           ),
