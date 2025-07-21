@@ -1,9 +1,9 @@
 // ignore: camel_case_types
 import 'package:flutter/material.dart';
-import 'package:my_blog/const/my_colors.dart';
-import 'package:my_blog/const/my_strings.dart';
+import 'package:my_blog/component/my_colors.dart';
+import 'package:my_blog/component/my_strings.dart';
 import 'package:my_blog/gen/assets.gen.dart';
-import 'package:my_blog/my_componnent.dart';
+import 'package:my_blog/component/my_componnent.dart';
 
 // ignore: camel_case_types
 class ProfileScreen extends StatelessWidget {

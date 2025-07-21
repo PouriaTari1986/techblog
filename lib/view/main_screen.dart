@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:my_blog/const/my_colors.dart';
+import 'package:my_blog/component/my_colors.dart';
 import 'package:my_blog/gen/assets.gen.dart';
 import 'package:my_blog/view/home_screen.dart';
 import 'package:my_blog/view/profile_screen.dart';
+import 'package:my_blog/view/register_intro.dart';
 
 // ignore: camel_case_types
 class MainScrren extends StatefulWidget {
@@ -10,17 +11,12 @@ class MainScrren extends StatefulWidget {
 
   @override
   State<MainScrren> createState() => _MainScrrenState();
-
-
-
 }
-final GlobalKey<ScaffoldState> _key = GlobalKey();
 
+final GlobalKey<ScaffoldState> _key = GlobalKey();
 
 class _MainScrrenState extends State<MainScrren> {
   var selectedPageIndex = 0;
-
- 
 
   @override
   Widget build(BuildContext context) {
@@ -34,37 +30,42 @@ class _MainScrrenState extends State<MainScrren> {
         drawer: Drawer(
           backgroundColor: SolidColors.scaffoldBackGround,
           child: Padding(
-            padding:  EdgeInsets.only(right: bodyMargin,left: bodyMargin),
+            padding: EdgeInsets.only(right: bodyMargin, left: bodyMargin),
             child: ListView(
               children: [
                 DrawerHeader(
                   child: Center(child: Assets.images.logo.image(scale: 3)),
                 ),
-            
-            
+
                 ListTile(
                   title: Text("پروفایل کاربری", style: textTheme.titleMedium),
                   onTap: () {},
                 ),
-            
+
                 Divider(color: SolidColors.dividerColor),
-            
+
                 ListTile(
                   title: Text("درباره تک بلاگ", style: textTheme.titleMedium),
                   onTap: () {},
                 ),
-            
+
                 Divider(color: SolidColors.dividerColor),
-            
+
                 ListTile(
-                  title: Text("اشتراک گذاری تک بلاگ", style: textTheme.titleMedium),
+                  title: Text(
+                    "اشتراک گذاری تک بلاگ",
+                    style: textTheme.titleMedium,
+                  ),
                   onTap: () {},
                 ),
-            
+
                 Divider(color: SolidColors.dividerColor),
-            
+
                 ListTile(
-                  title: Text("تک بلاگ در گیت هاب", style: textTheme.titleMedium),
+                  title: Text(
+                    "تک بلاگ در گیت هاب",
+                    style: textTheme.titleMedium,
+                  ),
                   onTap: () {},
                 ),
                 Divider(color: SolidColors.dividerColor),
@@ -81,11 +82,10 @@ class _MainScrrenState extends State<MainScrren> {
             children: [
               InkWell(
                 onTap: () {
-                  
                   _key.currentState!.openDrawer();
-                  
                 },
-                child: Icon(Icons.menu, color: Colors.black)),
+                child: Icon(Icons.menu, color: Colors.black),
+              ),
 
               Assets.images.logo.image(height: size.height / 14),
 
@@ -105,6 +105,7 @@ class _MainScrrenState extends State<MainScrren> {
                     textTheme: textTheme,
                     size: size,
                   ),
+                  RegisterIntro(),
                   ProfileScreen(
                     bodyMargin: bodyMargin,
                     textTheme: textTheme,
@@ -179,7 +180,7 @@ class BottomNavigation extends StatelessWidget {
                 ),
 
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () => changeScreen(1),
                   icon: ImageIcon(
                     Assets.icons.register.provider(),
                     size: 40,
@@ -188,7 +189,7 @@ class BottomNavigation extends StatelessWidget {
                 ),
 
                 IconButton(
-                  onPressed: (() => changeScreen(1)),
+                  onPressed: (() => changeScreen(2)),
                   icon: ImageIcon(
                     Assets.icons.user.provider(),
                     size: 40,

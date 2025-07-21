@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:my_blog/const/my_colors.dart';
-import 'package:my_blog/const/my_strings.dart';
+import 'package:my_blog/Models/fake_data/fake_data.dart';
+import 'package:my_blog/component/my_colors.dart';
+import 'package:my_blog/component/my_strings.dart';
 import 'package:my_blog/gen/assets.gen.dart';
-import 'package:my_blog/models/fake_data.dart';
-import 'package:my_blog/my_componnent.dart';
+import 'package:my_blog/component/my_componnent.dart';
 
 class MyCat extends StatefulWidget {
   const MyCat({super.key});
@@ -127,7 +127,7 @@ class _MyCatState extends State<MyCat> {
                             crossAxisCount: 2,
                             mainAxisSpacing: 8,
                             crossAxisSpacing: 8,
-                            childAspectRatio: 0.2,
+                            childAspectRatio: 0.3,
                           ),
 
                       itemBuilder: (context, index) {

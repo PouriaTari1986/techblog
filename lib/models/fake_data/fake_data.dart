@@ -1,7 +1,7 @@
 
 
+import 'package:my_blog/Models/fake_data/data_model.dart';
 import 'package:my_blog/gen/assets.gen.dart';
-import 'package:my_blog/models/data_model.dart';
 
 
 Map homePagePosterMap = {

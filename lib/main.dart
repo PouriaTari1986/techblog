@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:my_blog/const/my_colors.dart';
+import 'package:my_blog/component/my_colors.dart';
 import 'package:my_blog/view/splash_screen.dart';
 
 void main() {
