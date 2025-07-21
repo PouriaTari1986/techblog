@@ -11,6 +11,8 @@ class MyStrings {
   static const String myFavoritePodcast = "پادکست های مورد علاقه من";
   static const String logOut = "خروج از حساب کاربری";
   static const String entrEmial = " لطفا ایمیلت رو وارد کن";
+  static const String shareText = ''' من از تک  بلاگ استفاده میکنم،تو هم داشته باش 
+  www.sasansafari.com''';
   static const String activatedCode = "کد فعال سازی رو وارد کن";
   static const String letsGo = "بزن بریم";
   static const String imageProfileEdit = "ویرایش عکس پروفایل";

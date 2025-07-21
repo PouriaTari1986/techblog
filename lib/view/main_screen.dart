@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:my_blog/component/my_colors.dart';
+import 'package:my_blog/component/my_strings.dart';
 import 'package:my_blog/gen/assets.gen.dart';
 import 'package:my_blog/view/home_screen.dart';
 import 'package:my_blog/view/profile_screen.dart';
 import 'package:my_blog/view/register_intro.dart';
+import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 
-// ignore: camel_case_types
-class MainScrren extends StatefulWidget {
-  const MainScrren({super.key});
 
-  @override
-  State<MainScrren> createState() => _MainScrrenState();
-}
 
 final GlobalKey<ScaffoldState> _key = GlobalKey();
 
-class _MainScrrenState extends State<MainScrren> {
-  var selectedPageIndex = 0;
+// ignore: must_be_immutable
+class MainScreen extends StatelessWidget {
+  RxInt selectedPageIndex = 0.obs;
+
+  MainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +56,9 @@ class _MainScrrenState extends State<MainScrren> {
                     "اشتراک گذاری تک بلاگ",
                     style: textTheme.titleMedium,
                   ),
-                  onTap: () {},
+                  onTap: () async {
+                    await SharePlus.instance.share(ShareParams(text: MyStrings.shareText));
+                  },
                 ),
 
                 Divider(color: SolidColors.dividerColor),
@@ -97,22 +99,14 @@ class _MainScrrenState extends State<MainScrren> {
         body: Stack(
           children: [
             Positioned.fill(
-              child: IndexedStack(
-                index: selectedPageIndex,
+              child: Obx(()=>IndexedStack(
+                index: selectedPageIndex.value,
                 children: [
-                  HomeScreen(
-                    bodyMargin: bodyMargin,
-                    textTheme: textTheme,
-                    size: size,
-                  ),
+                  HomeScreen(bodyMargin: bodyMargin, textTheme: textTheme, size: size),
                   RegisterIntro(),
-                  ProfileScreen(
-                    bodyMargin: bodyMargin,
-                    textTheme: textTheme,
-                    size: size,
-                  ),
+                  ProfileScreen(bodyMargin: bodyMargin, textTheme: textTheme, size: size),
                 ],
-              ),
+              )),
             ),
 
             // ignore: avoid_types_as_parameter_names
@@ -120,9 +114,7 @@ class _MainScrrenState extends State<MainScrren> {
               size: size,
               bodyMargin: bodyMargin,
               changeScreen: (int value) {
-                setState(() {
-                  selectedPageIndex = value;
-                });
+               selectedPageIndex.value = value;
               },
             ),
           ],

@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(Duration(seconds: 3)).then((onValue){
       if(mounted){
         Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context)=>MainScrren()));
+          builder: (context)=>MainScreen()));
       }
     });
   }
