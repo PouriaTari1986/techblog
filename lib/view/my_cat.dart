@@ -82,7 +82,7 @@ class _MyCatState extends State<MyCat> {
                             crossAxisCount: 2,
                             mainAxisSpacing: 8,
                             crossAxisSpacing: 8,
-                            childAspectRatio: 0.38,
+                            childAspectRatio: 0.32,
                           ),
 
                       itemBuilder: (context, index) {

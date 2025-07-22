@@ -1,8 +1,10 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:my_blog/component/my_colors.dart';
+import 'package:my_blog/component/text_style.dart';
 import 'package:my_blog/controller/home_screen_controller.dart';
 import 'package:my_blog/gen/assets.gen.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -27,13 +29,12 @@ class TechDivider extends StatelessWidget {
 }
 // ignore: must_be_immutable
 class TagList extends StatelessWidget {
-    TagList({
+    const TagList({
     required this.textTheme,
     required this.index,
     super.key,
 
   });
-  HomeScreenController homeScreenController = Get.put(HomeScreenController());
 
   final TextTheme textTheme;
   
@@ -64,7 +65,8 @@ class TagList extends StatelessWidget {
               size: 16,
             ),
             SizedBox(width: 8),
-            Text(homeScreenController.tagList[index].title!, style: textTheme.headlineSmall),
+            Text(Get.find<HomeScreenController>().tagList[index].title!
+              , style: textTheme.headlineSmall),
           ],
         ),
       ),
@@ -88,3 +90,52 @@ var uri = Uri.parse(url);
 
 
 }
+
+
+
+class Loading extends StatelessWidget {
+  const Loading({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SpinKitFadingCube(
+      color: SolidColors.primaryColor,
+      size: 32,
+    );
+  }
+}
+
+ PreferredSize appBar(String title) {
+    return PreferredSize(preferredSize: Size.fromHeight(80),
+       child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          actions: [
+        
+            Padding(
+              padding: const EdgeInsets.only(left: 16),
+              child: Center(child: Text(title,style: appBarTextStyle,)),
+            ),
+        
+            
+        
+          ],
+          leading: Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child : Container(
+              height: 40,
+              width: 40,
+              decoration: BoxDecoration(
+                color: SolidColors.primaryColor.withAlpha(100),
+                shape: BoxShape.circle
+              ),
+              child: Icon(Icons.keyboard_arrow_right),
+           ) 
+           ),
+          ),
+             ),
+     );}
