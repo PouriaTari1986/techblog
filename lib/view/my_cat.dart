@@ -140,7 +140,6 @@ class _MyCatState extends State<MyCat> {
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 SizedBox(width: 8),
                                 Text(

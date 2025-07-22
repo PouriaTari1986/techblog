@@ -53,6 +53,7 @@ class TagList extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ImageIcon(
               Assets.icons.hashtag.provider(),
