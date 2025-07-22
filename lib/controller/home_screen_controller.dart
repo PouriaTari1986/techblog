@@ -1,6 +1,9 @@
+
+
 import 'package:get/get.dart';
 import 'package:my_blog/component/api_constant.dart';
 import 'package:my_blog/models/article_model.dart';
+import 'package:my_blog/models/podcast_model.dart';
 import 'package:my_blog/models/poster_model.dart';
 import 'package:my_blog/models/tags_model.dart';
 import 'package:my_blog/services/dio_service.dart';
@@ -13,7 +16,7 @@ RxList<TagsModel> tagList = RxList();
 
 RxList<ArticleModel> topVisitedList = RxList();
 
-RxList<PosterModel> topPodcastList = RxList();
+RxList<PodcastModel> topPodcast = RxList();
 
   @override
   void onInit(){
@@ -29,14 +32,21 @@ RxList<PosterModel> topPodcastList = RxList();
 
  if(response.statusCode==200){
 
-   response.data['top_visited'].forEach((element){
-
+     response.data['top_visited'].forEach((element) {
       topVisitedList.add(
         ArticleModel.fromJson(element)
       );
-
    });
- }
-}
 
-}
+     response.data['top_podcasts'].forEach((element) {
+        topPodcast.add(
+          PodcastModel.fromJson(element)
+        );
+     });response.data['tags'].forEach((element) {
+        tagList.add(
+          TagsModel.fromJson(element)
+        );
+     });
+
+ }
+ }}

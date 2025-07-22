@@ -1,8 +1,9 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:my_blog/Models/fake_data/fake_data.dart';
+import 'package:get/get.dart';
 import 'package:my_blog/component/my_colors.dart';
+import 'package:my_blog/controller/home_screen_controller.dart';
 import 'package:my_blog/gen/assets.gen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -24,13 +25,15 @@ class TechDivider extends StatelessWidget {
     );
   }
 }
+// ignore: must_be_immutable
 class TagList extends StatelessWidget {
-   const TagList({
+    TagList({
     required this.textTheme,
     required this.index,
     super.key,
 
   });
+  HomeScreenController homeScreenController = Get.put(HomeScreenController());
 
   final TextTheme textTheme;
   
@@ -61,7 +64,7 @@ class TagList extends StatelessWidget {
               size: 16,
             ),
             SizedBox(width: 8),
-            Text(tagList[index].title, style: textTheme.headlineSmall),
+            Text(homeScreenController.tagList[index].title!, style: textTheme.headlineSmall),
           ],
         ),
       ),
@@ -79,6 +82,7 @@ var uri = Uri.parse(url);
 
     await launchUrl(uri);
   }else{
+    // ignore: avoid_print
     print("Could not launch $url");
   }
 

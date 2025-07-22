@@ -1,34 +1,36 @@
+import 'package:my_blog/component/api_constant.dart';
+
 class PodcastModel {
 
 String? id;
 String? title;
 String? poster;
-String? publisher;
+String? catName;
 String? view;
 String? status;
 String? createdAt;
-String? isFavorite;
+String? author;
 
 PodcastModel({
   required this.id,
   required this.title,
   required this.poster,
-  required this.publisher,
+  required this.catName,
   required this.view,
   required this.status,
   required this.createdAt,
-  required this.isFavorite,
+  required this.author,
 });
 
 PodcastModel.fromJson(Map<String, dynamic> element) {
   id = element['id'];
   title = element['title'];
-  poster = element['poster'];
-  publisher = element['publisher'];
+  poster = ApiConstant.hostDlUrl + element['poster'];
+  catName = element['cat_name'];
   view = element['view'];
   status = element['status'];
   createdAt = element['created_at'];
-  isFavorite = element['isFavorite'];
+  author = element['author'];
 }
 
 }
