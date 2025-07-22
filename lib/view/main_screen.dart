@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_blog/component/my_colors.dart';
+import 'package:my_blog/component/my_componnent.dart';
 import 'package:my_blog/component/my_strings.dart';
 import 'package:my_blog/gen/assets.gen.dart';
 import 'package:my_blog/view/home_screen.dart';
@@ -46,7 +47,10 @@ class MainScreen extends StatelessWidget {
 
                 ListTile(
                   title: Text("درباره تک بلاگ", style: textTheme.titleMedium),
-                  onTap: () {},
+                  onTap: () {
+
+                    myLaunchUrl( MyStrings.githubUrl);
+                  },
                 ),
 
                 Divider(color: SolidColors.dividerColor),
@@ -68,7 +72,10 @@ class MainScreen extends StatelessWidget {
                     "تک بلاگ در گیت هاب",
                     style: textTheme.titleMedium,
                   ),
-                  onTap: () {},
+                  onTap: () {
+
+                   myLaunchUrl( MyStrings.githubUrl);
+                  },
                 ),
                 Divider(color: SolidColors.dividerColor),
               ],
