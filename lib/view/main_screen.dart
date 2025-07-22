@@ -116,7 +116,6 @@ class MainScreen extends StatelessWidget {
               )),
             ),
 
-            // ignore: avoid_types_as_parameter_names
             BottomNavigation(
               size: size,
               bodyMargin: bodyMargin,

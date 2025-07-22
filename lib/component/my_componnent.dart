@@ -1,4 +1,4 @@
-import 'dart:developer';
+
 
 import 'package:flutter/material.dart';
 import 'package:my_blog/Models/fake_data/fake_data.dart';
@@ -79,7 +79,7 @@ var uri = Uri.parse(url);
 
     await launchUrl(uri);
   }else{
-    log("Could not launch $url");
+    print("Could not launch $url");
   }
 
 
