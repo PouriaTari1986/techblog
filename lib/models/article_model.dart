@@ -19,6 +19,8 @@ String? view;
 
 String? status;
 
+String? isFavorite;
+
 String? createdAt;
 
 
@@ -31,6 +33,7 @@ ArticleModel({
   required this.author,
   required this.view,
   required this.status,
+  // this.isFavorite,
   required this.createdAt,
 });
 

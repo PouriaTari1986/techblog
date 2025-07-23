@@ -67,6 +67,10 @@ class $AssetsImagesGen {
   AssetGenImage get programming =>
       const AssetGenImage('assets/images/programming.png');
 
+  /// File path: assets/images/single_place_holder.jpg
+  AssetGenImage get singlePlaceHolder =>
+      const AssetGenImage('assets/images/single_place_holder.jpg');
+
   /// File path: assets/images/welcome.svg
   SvgGenImage get welcome => const SvgGenImage('assets/images/welcome.svg');
 
@@ -77,6 +81,7 @@ class $AssetsImagesGen {
     arrow,
     logo,
     programming,
+    singlePlaceHolder,
     welcome,
   ];
 }

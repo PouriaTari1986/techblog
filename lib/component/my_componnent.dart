@@ -108,22 +108,12 @@ class Loading extends StatelessWidget {
 }
 
  PreferredSize appBar(String title) {
-    return PreferredSize(preferredSize: Size.fromHeight(80),
+    return PreferredSize(preferredSize: Size.fromHeight(60),
        child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: AppBar(
           elevation: 0,
           backgroundColor: Colors.transparent,
-          actions: [
-        
-            Padding(
-              padding: const EdgeInsets.only(left: 16),
-              child: Center(child: Text(title,style: appBarTextStyle,)),
-            ),
-        
-            
-        
-          ],
           leading: Padding(
             padding: const EdgeInsets.only(right: 16),
             child : Container(
@@ -136,6 +126,16 @@ class Loading extends StatelessWidget {
               child: Icon(Icons.keyboard_arrow_right),
            ) 
            ),
+            actions: [
+        
+            Padding(
+              padding: const EdgeInsets.only(left: 16),
+              child: Center(child: Text(title,style: appBarTextStyle,)),
+            ),
+        
+            
+        
+          ],
           ),
              ),
      );}

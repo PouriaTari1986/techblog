@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:my_blog/component/my_colors.dart';
 import 'package:my_blog/component/my_strings.dart';
@@ -189,10 +188,7 @@ class HomeScreen extends StatelessWidget {
                         
                       ),
                       placeholder: (context, url) => Center(
-                        child: SpinKitFadingCube(
-                          color: SolidColors.primaryColor,
-                          size: 32,
-                        ),
+                        child: Loading()
                       ),
                       errorWidget: (context, url, error) => Icon(
                         Icons.image_not_supported_outlined,

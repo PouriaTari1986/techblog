@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get/get.dart';
 import 'package:my_blog/component/my_colors.dart';
 import 'package:my_blog/view/article_list_screen.dart';
 
@@ -14,16 +14,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
 
-    return MaterialApp(
+    return GetMaterialApp(
+      locale: const Locale('fa', 'IR'),
+      textDirection: TextDirection.rtl,
       debugShowCheckedModeBanner: false,
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: ([
-        Locale('fa', ''), //farsi
-      ]),
+
       theme: ThemeData(
         inputDecorationTheme: InputDecorationTheme(
           border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(16),
@@ -81,6 +76,11 @@ class MyApp extends StatelessWidget {
           titleSmall: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w700,
+            color: SolidColors.textTitles,
+          ),
+          displayMedium: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w300,
             color: SolidColors.textTitles,
           ),
           displayLarge: TextStyle(
