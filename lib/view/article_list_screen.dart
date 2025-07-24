@@ -11,9 +11,11 @@ class ArticleListScreen extends StatelessWidget {
   ArticleListScreen({super.key});
 
   ListArticleController listArticleController = Get.put(
-    ListArticleController(), 
+    ListArticleController(),
   );
- SingleArticleController singleArticleController = Get.put(SingleArticleController());
+  SingleArticleController singleArticleController = Get.put(
+    SingleArticleController(),
+  );
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
@@ -28,10 +30,10 @@ class ArticleListScreen extends StatelessWidget {
           itemCount: listArticleController.articleList.length,
           itemBuilder: (context, index) {
             return GestureDetector(
-
               onTap: () {
-                singleArticleController.articleInfoModel.value.id = listArticleController.articleList[index].id;
-                Get.to(SingleArticleScreen());
+                singleArticleController.articleInfoModel.value.id =
+                    listArticleController.articleList[index].id;
+                Get.to(() => SingleArticleScreen());
               },
 
               child: Padding(
@@ -43,11 +45,14 @@ class ArticleListScreen extends StatelessWidget {
                       width: Get.width / 4,
                       height: Get.height / 8,
                       child: CachedNetworkImage(
-                        imageUrl: listArticleController.articleList[index].image!,
+                        imageUrl:
+                            listArticleController.articleList[index].image!,
                         imageBuilder: (context, imageProvider) {
                           return Container(
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(20)),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(20),
+                              ),
                               image: DecorationImage(
                                 image: imageProvider,
                                 fit: BoxFit.cover,
@@ -55,7 +60,7 @@ class ArticleListScreen extends StatelessWidget {
                             ),
                           );
                         },
-                      
+
                         placeholder: (context, url) => Loading(),
                         errorWidget: (context, url, error) => Icon(
                           Icons.image_not_supported_outlined,

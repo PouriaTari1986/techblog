@@ -16,6 +16,7 @@ class SingleArticleScreen extends StatefulWidget {
 }
 
 class _SingleArticleScreenState extends State<SingleArticleScreen> {
+
   SingleArticleController singleArticleController = Get.put(
     SingleArticleController(),
   );
@@ -32,96 +33,99 @@ class _SingleArticleScreenState extends State<SingleArticleScreen> {
 
     return SafeArea(
       child: Scaffold(
-        body: Obx(
-          ()=> Column(
-            children: [
-              Stack(
-                children: [
-                  CachedNetworkImage(
-                    imageUrl:'',
-                    imageBuilder: ((context, imageProvider) =>
-                        Image(image: imageProvider)),
-          
-                    placeholder: (context, url) => Center(child: Loading()),
-                    errorWidget: (context, url, error) =>
-                        Assets.images.singlePlaceHolder.image(),
-                  ),
-                  Positioned(
-                    top: 0,
-                    right: 0,
-                    left: 0,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: GradiantColors.singleAppBarGradiant,
+        body: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Obx(
+            ()=> Column(
+              children: [
+                Stack(
+                  children: [
+                    CachedNetworkImage(
+                      imageUrl:singleArticleController.articleInfoModel.value.image!,
+                      imageBuilder: ((context, imageProvider) =>
+                          Image(image: imageProvider)),
+            
+                      placeholder: (context, url) => Center(child: Loading()),
+                      errorWidget: (context, url, error) =>
+                          Assets.images.singlePlaceHolder.image(),
+                    ),
+                    Positioned(
+                      top: 0,
+                      right: 0,
+                      left: 0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: GradiantColors.singleAppBarGradiant,
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            SizedBox(width: 12),
+                            Icon(Icons.arrow_back, color: Colors.white, size: 24),
+                            Expanded(child: SizedBox()),
+                            Icon(
+                              Icons.bookmark_outline_rounded,
+                              color: Colors.white,
+                              size: 24,
+                            ),
+                            SizedBox(width: 12),
+                            Icon(Icons.share, color: Colors.white, size: 24),
+                            SizedBox(width: 12),
+                          ],
                         ),
                       ),
+                    ),
+                  ],
+                ),
+            
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        singleArticleController.articleInfoModel.value.title!,
+                        maxLines: 2,
+                        style: textTheme.titleMedium,
+                      ),
+                    ),
+                    SizedBox(height: 12),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
+                          Assets.images.a3899618.image(scale: 6),
                           SizedBox(width: 12),
-                          Icon(Icons.arrow_back, color: Colors.white, size: 24),
-                          Expanded(child: SizedBox()),
-                          Icon(
-                            Icons.bookmark_outline_rounded,
-                            color: Colors.white,
-                            size: 24,
+                          Text(
+                            singleArticleController.articleInfoModel.value.author!,
+                            style: textTheme.titleSmall,
                           ),
-                          SizedBox(width: 12),
-                          Icon(Icons.share, color: Colors.white, size: 24),
-                          SizedBox(width: 12),
+                          SizedBox(width: 20),
+                          Text(
+                            singleArticleController
+                                .articleInfoModel
+                                .value
+                                .createdAt!,
+                            style: textTheme.displaySmall,
+                          ),
                         ],
                       ),
                     ),
-                  ),
-                ],
-              ),
-          
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      singleArticleController.articleInfoModel.value.title!,
-                      maxLines: 2,
-                      style: textTheme.titleMedium,
+            
+                    HtmlWidget(
+                      "html",
+                      enableCaching: true,
+                      onLoadingBuilder: (context, element, loadingProgress) =>
+                          Loading(),
                     ),
-                  ),
-                  SizedBox(height: 12),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        Assets.images.a3899618.image(scale: 6),
-                        SizedBox(width: 12),
-                        Text(
-                          singleArticleController.articleInfoModel.value.author!,
-                          style: textTheme.titleSmall,
-                        ),
-                        SizedBox(width: 20),
-                        Text(
-                          singleArticleController
-                              .articleInfoModel
-                              .value
-                              .createdAt!,
-                          style: textTheme.displaySmall,
-                        ),
-                      ],
-                    ),
-                  ),
-          
-                  HtmlWidget(
-                    "html",
-                    enableCaching: true,
-                    onLoadingBuilder: (context, element, loadingProgress) =>
-                        Loading(),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
