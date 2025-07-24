@@ -11,38 +11,29 @@ class ListArticleController extends GetxController{
 
 RxList<ArticleModel> articleList = RxList();
 
-
 RxBool loading = false.obs;
 
-
-  @override
-  void onInit(){
-
+@override
+  void onInit() {
     super.onInit();
-    getList();
+  getList();
   }
 
+Future<void> getList() async{
 
-
-
- Future<void> getList()async{
   loading.value = true;
 
-  //TODO get user Id from Storage + userIde aPi
   var response = await DioService().getMethod(ApiConstant.getArticleList);
 
- if(response.statusCode==200){
+  if(response.statusCode == 200){
 
-     response.data.forEach((element) {
-      articleList.add(
-        ArticleModel.fromJson(element)
-      );
-   });
+    response.data.forEach((element){
 
-     
+      articleList.add(ArticleModel.fromJson(element));
+    });
+  }
 
-      loading.value = false;
-    }
- }
+}
+
 
 }

@@ -120,10 +120,10 @@ class Loading extends StatelessWidget {
               height: 40,
               width: 40,
               decoration: BoxDecoration(
-                color: SolidColors.primaryColor.withAlpha(100),
+                color: SolidColors.primaryColor,
                 shape: BoxShape.circle
               ),
-              child: Icon(Icons.keyboard_arrow_right),
+              child: Icon(Icons.keyboard_arrow_right,color: Colors.white,),
            ) 
            ),
             actions: [

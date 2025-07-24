@@ -4,8 +4,8 @@ import 'package:my_blog/component/my_colors.dart';
 TextStyle appBarTextStyle = TextStyle(
 
   fontFamily: 'dana',
-  fontSize: 16,
-  color: SolidColors.primaryColor,
-  fontWeight: FontWeight.w300
+  fontSize: 17,
+  color: SolidColors.textTitles,
+  fontWeight: FontWeight.w700
 
 );

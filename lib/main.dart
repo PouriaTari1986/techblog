@@ -88,6 +88,11 @@ class MyApp extends StatelessWidget {
             fontWeight: FontWeight.w700,
             color: SolidColors.hintText,
           ),
+          displaySmall: TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w700,
+            color: SolidColors.subText,
+          ),
         ),
       ),
       home: ArticleListScreen(),

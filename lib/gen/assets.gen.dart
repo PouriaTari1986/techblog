@@ -30,6 +30,10 @@ class $AssetsIconsGen {
   AssetGenImage get register =>
       const AssetGenImage('assets/icons/register.png');
 
+  /// File path: assets/icons/right_arrow.svg
+  SvgGenImage get rightArrow =>
+      const SvgGenImage('assets/icons/right_arrow.svg');
+
   /// File path: assets/icons/user.png
   AssetGenImage get user => const AssetGenImage('assets/icons/user.png');
 
@@ -37,11 +41,12 @@ class $AssetsIconsGen {
   AssetGenImage get write => const AssetGenImage('assets/icons/write.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [
+  List<dynamic> get values => [
     hashtag,
     home,
     podcast,
     register,
+    rightArrow,
     user,
     write,
   ];
