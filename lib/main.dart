@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_blog/component/my_colors.dart';
-import 'package:my_blog/view/article_list_screen.dart';
+import 'package:my_blog/view/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -86,7 +86,7 @@ class MyApp extends StatelessWidget {
           displayLarge: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w700,
-            color: SolidColors.hintText,
+            color: const Color.fromARGB(255, 66, 41, 41),
           ),
           displaySmall: TextStyle(
             fontSize: 15,
@@ -95,7 +95,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: ArticleListScreen(),
+      home: SplashScreen(),
     );
   }
 }

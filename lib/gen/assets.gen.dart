@@ -55,15 +55,14 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  /// File path: assets/images/3899618.png
-  AssetGenImage get a3899618 =>
-      const AssetGenImage('assets/images/3899618.png');
-
   /// File path: assets/images/Group 1.png
   AssetGenImage get group1 => const AssetGenImage('assets/images/Group 1.png');
 
   /// File path: assets/images/arrow.svg
   SvgGenImage get arrow => const SvgGenImage('assets/images/arrow.svg');
+
+  /// File path: assets/images/avatar.png
+  AssetGenImage get avatar => const AssetGenImage('assets/images/avatar.png');
 
   /// File path: assets/images/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
@@ -81,9 +80,9 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<dynamic> get values => [
-    a3899618,
     group1,
     arrow,
+    avatar,
     logo,
     programming,
     singlePlaceHolder,

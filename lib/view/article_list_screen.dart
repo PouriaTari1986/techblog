@@ -24,16 +24,18 @@ class ArticleListScreen extends StatelessWidget {
       appBar: appBar("لیست مقاله ها"),
 
       body: Obx(
-        () => ListView.builder(
+        () => !singleArticleController.loading.value?
+        ListView.builder(
           physics: BouncingScrollPhysics(),
           scrollDirection: Axis.vertical,
           itemCount: listArticleController.articleList.length,
           itemBuilder: (context, index) {
             return GestureDetector(
-              onTap: () {
-                singleArticleController.articleInfoModel.value.id =
-                    listArticleController.articleList[index].id;
-                Get.to(() => SingleArticleScreen());
+              onTap: ()async {
+                await singleArticleController.getArticleInfo(
+                listArticleController.articleList[index].id
+                );
+               await Get.to(SingleArticleScreen());
               },
 
               child: Padding(
@@ -104,7 +106,7 @@ class ArticleListScreen extends StatelessWidget {
               ),
             );
           },
-        ),
+        ):Loading(),
       ),
     );
   }

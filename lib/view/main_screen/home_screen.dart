@@ -4,8 +4,11 @@ import 'package:get/get.dart';
 import 'package:my_blog/component/my_colors.dart';
 import 'package:my_blog/component/my_strings.dart';
 import 'package:my_blog/controller/home_screen_controller.dart';
+import 'package:my_blog/controller/single_article_controller.dart';
 import 'package:my_blog/gen/assets.gen.dart';
 import 'package:my_blog/component/my_componnent.dart';
+import 'package:my_blog/view/article_list_screen.dart';
+import 'package:my_blog/view/single_article_screen.dart';
 
 // ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
@@ -16,6 +19,7 @@ class HomeScreen extends StatelessWidget {
     required this.size,
   });
   HomeScreenController homeScreenController = Get.put(HomeScreenController());
+  SingleArticleController singleArticleController = Get.put(SingleArticleController());
   final double bodyMargin;
   final TextTheme textTheme;
   final Size size;
@@ -76,16 +80,19 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget seeMoreBlog() {
-    return SizedBox(
-      height: 32,
-      child: Padding(
-        padding: EdgeInsets.only(right: bodyMargin, bottom: 8),
-        child: Row(
-          children: [
-            Assets.icons.write.image(color: SolidColors.seeMore, height: 30),
-            SizedBox(width: 8),
-            Text(MyStrings.viewHottestBlog, style: textTheme.headlineMedium),
-          ],
+    return GestureDetector(
+      onTap: (()=>Get.to(ArticleListScreen())),
+      child: SizedBox(
+        height: 32,
+        child: Padding(
+          padding: EdgeInsets.only(right: bodyMargin, bottom: 8),
+          child: Row(
+            children: [
+              Assets.icons.write.image(color: SolidColors.seeMore, height: 30),
+              SizedBox(width: 8),
+              Text(MyStrings.viewHottestBlog, style: textTheme.headlineMedium),
+            ],
+          ),
         ),
       ),
     );
@@ -223,90 +230,100 @@ class HomeScreen extends StatelessWidget {
           itemCount: homeScreenController.topVisitedList.length,
           itemBuilder: ((context, index) {
             //blog item
-            return Padding(
-              padding: EdgeInsets.only(right: index == 0 ? bodyMargin : 15),
-              child: Column(
-                children: [
-                  SizedBox(
-                    width: size.width / 2.4,
-                    height: size.height / 5.5,
-                    child: Stack(
-                      children: [
-                        CachedNetworkImage(
-                          imageUrl: homeScreenController.topVisitedList[index].image!,
-                          imageBuilder: (context, imageProvider) => Container(
-                            decoration: BoxDecoration(
+            return GestureDetector(
+
+              onTap: (() {
+                singleArticleController.getArticleInfo(
+                  homeScreenController.topVisitedList[index].id,
+                  
+                );
+                Get.to(SingleArticleScreen());
+              }),
+              child: Padding(
+                padding: EdgeInsets.only(right: index == 0 ? bodyMargin : 15),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      width: size.width / 2.4,
+                      height: size.height / 5.5,
+                      child: Stack(
+                        children: [
+                          CachedNetworkImage(
+                            imageUrl: homeScreenController.topVisitedList[index].image!,
+                            imageBuilder: (context, imageProvider) => Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                image: DecorationImage(
+                                  image:imageProvider,fit: BoxFit.cover,
+                                   ),
+                                   
+                              
+                            ),
+                            foregroundDecoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
-                              image: DecorationImage(
-                                image:imageProvider,fit: BoxFit.cover,
-                                 ),
-                                 
-                            
+                              gradient: LinearGradient(
+                                colors: GradiantColors.homePosterCoverGradiant,
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                              ),
+                            ),
+                         
                           ),
-                          foregroundDecoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            gradient: LinearGradient(
-                              colors: GradiantColors.homePosterCoverGradiant,
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
+                             placeholder: (context, url) => Center(
+                              child: Loading(),
+                            ),
+                            errorWidget: (context, url, error) => Icon(
+                              Icons.image_not_supported_outlined,
+                              color: Colors.grey,
+                              size: 50,
                             ),
                           ),
-                       
-                        ),
-                           placeholder: (context, url) => Center(
-                            child: Loading(),
+                          Positioned(
+                            bottom: 8,
+                            left: 0,
+                            right: 0,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Text(
+                                  homeScreenController
+                                      .topVisitedList[index]
+                                      .author!,
+                                  style: textTheme.headlineSmall,
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      homeScreenController
+                                          .topVisitedList[index]
+                                          .view!,
+                                      style: textTheme.headlineSmall,
+                                    ),
+              
+                                    SizedBox(width: 8),
+                                    Icon(
+                                      Icons.remove_red_eye_sharp,
+                                      color: Colors.white,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                          errorWidget: (context, url, error) => Icon(
-                            Icons.image_not_supported_outlined,
-                            color: Colors.grey,
-                            size: 50,
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 8,
-                          left: 0,
-                          right: 0,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Text(
-                                homeScreenController
-                                    .topVisitedList[index]
-                                    .author!,
-                                style: textTheme.headlineSmall,
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    homeScreenController
-                                        .topVisitedList[index]
-                                        .view!,
-                                    style: textTheme.headlineSmall,
-                                  ),
-
-                                  SizedBox(width: 8),
-                                  Icon(
-                                    Icons.remove_red_eye_sharp,
-                                    color: Colors.white,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    width: size.width / 2.4,
-                    child: Text(
-                      homeScreenController.topVisitedList[index].title!,
-                      style: textTheme.titleMedium,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
+                    SizedBox(
+                      width: size.width / 2.4,
+                      child: Text(
+                        homeScreenController.topVisitedList[index].title!,
+                        style: textTheme.titleMedium,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             );
           }),

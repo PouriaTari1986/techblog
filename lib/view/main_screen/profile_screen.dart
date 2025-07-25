@@ -28,7 +28,7 @@ class ProfileScreen extends StatelessWidget {
         
         children: [
       
-        Assets.images.a3899618.image(height: 120),
+        Assets.images.avatar.image(height: 120),
         SizedBox(height: 12,),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
