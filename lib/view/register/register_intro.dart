@@ -4,12 +4,11 @@ import 'package:get/get.dart';
 import 'package:my_blog/component/my_strings.dart';
 import 'package:my_blog/controller/register_controller.dart';
 import 'package:my_blog/gen/assets.gen.dart';
-import 'package:my_blog/view/my_cat.dart'; // Make sure this import points to the file where MyCat is defined
 
 // ignore: must_be_immutable
 class RegisterIntro extends StatelessWidget {
    RegisterIntro({super.key});
-  RegisterController registerController = Get.put(RegisterController());
+  
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
@@ -46,7 +45,7 @@ class RegisterIntro extends StatelessWidget {
       ),
     );
   }
-
+  var registerController = Get.find<RegisterController>();
   Future<dynamic> _emailButtomSheet(
     BuildContext context,
     Size size,
@@ -149,8 +148,7 @@ class RegisterIntro extends StatelessWidget {
                   ),
                   ElevatedButton(onPressed: (() {
                    registerController.verify();
-                    // Navigator.of(context).pushReplacement(
-                    //   MaterialPageRoute(builder: (context) => const MyCat()));
+                  
                   }), child: Text("ادامه")),
                 ],
               ),

@@ -1,11 +1,13 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 import 'package:my_blog/component/my_colors.dart';
 import 'package:my_blog/component/my_componnent.dart';
 import 'package:my_blog/component/my_strings.dart';
+import 'package:my_blog/controller/register_controller.dart';
 import 'package:my_blog/gen/assets.gen.dart';
 import 'package:my_blog/view/main_screen/home_screen.dart';
 import 'package:my_blog/view/main_screen/profile_screen.dart';
-import 'package:my_blog/view/register/register_intro.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -18,7 +20,6 @@ class MainScreen extends StatelessWidget {
   RxInt selectedPageIndex = 0.obs;
 
   MainScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -130,9 +131,10 @@ class MainScreen extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class BottomNavigation extends StatelessWidget {
-  const BottomNavigation({
-    super.key,
+    BottomNavigation({
+    
     required this.size,
     required this.bodyMargin,
     required this.changeScreen,
@@ -141,6 +143,7 @@ class BottomNavigation extends StatelessWidget {
   final Size size;
   final double bodyMargin;
   final Function(int value) changeScreen;
+
 
   @override
   Widget build(BuildContext context) {
@@ -178,7 +181,7 @@ class BottomNavigation extends StatelessWidget {
                 ),
 
                 IconButton(
-                  onPressed: () => Get.to(RegisterIntro()),
+                  onPressed: () => Get.find<RegisterController>().toggleLogin(),
                   icon: ImageIcon(
                     Assets.icons.register.provider(),
                     size: 40,

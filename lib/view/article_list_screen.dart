@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:my_blog/component/my_componnent.dart';
 import 'package:my_blog/controller/list_article_controller.dart';
 import 'package:my_blog/controller/single_article_controller.dart';
-import 'package:my_blog/view/single_article_screen.dart';
+import 'package:my_blog/main.dart';
 
 // ignore: must_be_immutable
 class ArticleListScreen extends StatelessWidget {
@@ -35,7 +35,7 @@ class ArticleListScreen extends StatelessWidget {
                 await singleArticleController.getArticleInfo(
                 listArticleController.articleList[index].id
                 );
-               await Get.to(SingleArticleScreen());
+               await Get.toNamed(routeSingleArticle);
               },
 
               child: Padding(
