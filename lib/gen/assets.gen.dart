@@ -17,6 +17,10 @@ import 'package:vector_graphics/vector_graphics.dart' as _vg;
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/audiofile.png
+  AssetGenImage get audiofile =>
+      const AssetGenImage('assets/icons/audiofile.png');
+
   /// File path: assets/icons/hashtag.png
   AssetGenImage get hashtag => const AssetGenImage('assets/icons/hashtag.png');
 
@@ -40,8 +44,17 @@ class $AssetsIconsGen {
   /// File path: assets/icons/write.png
   AssetGenImage get write => const AssetGenImage('assets/icons/write.png');
 
+  /// File path: assets/icons/write_article.png
+  AssetGenImage get writeArticle =>
+      const AssetGenImage('assets/icons/write_article.png');
+
+  /// File path: assets/icons/write_podcast_icon.png
+  AssetGenImage get writePodcastIcon =>
+      const AssetGenImage('assets/icons/write_podcast_icon.png');
+
   /// List of all assets
   List<dynamic> get values => [
+    audiofile,
     hashtag,
     home,
     podcast,
@@ -49,6 +62,8 @@ class $AssetsIconsGen {
     rightArrow,
     user,
     write,
+    writeArticle,
+    writePodcastIcon,
   ];
 }
 

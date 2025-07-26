@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:my_blog/component/api_constant.dart';
+import 'package:my_blog/component/my_strings.dart';
 import 'package:my_blog/component/storage_const.dart';
+import 'package:my_blog/gen/assets.gen.dart';
 import 'package:my_blog/services/dio_service.dart';
 import 'package:my_blog/view/main_screen/main_screen.dart';
 import 'package:my_blog/view/register/register_intro.dart';
@@ -72,7 +76,111 @@ class RegisterController extends GetxController {
     if (GetStorage().read(token) == null) {
       Get.to(RegisterIntro());
     } else {
-      debugPrint("post screen");
+      routeToWriteBottomSheet();
     }
+  }
+
+  routeToWriteBottomSheet() {
+    Get.bottomSheet(
+      Container(
+        height: Get.height / 2.2,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  SvgPicture.asset(Assets.images.welcome.path, height: 60),
+                  SizedBox(width: 8),
+                  Text(
+                    "دونسته هات رو با بقیه به اشتراک بگذار",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 16),
+              Text(
+                MyStrings.gigTech,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+             SizedBox(height: Get.height/8,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  GestureDetector(
+                    
+                    onTap: () {
+                      debugPrint("go to writing article");
+                    },
+                    child: Container(
+                      color: Colors.white,
+                      child: Row(
+                        children: [
+                          Assets.icons.writeArticle.image(
+                            height: 40,
+                            color: Colors.black,
+                          ),
+                          SizedBox(width: 8),
+                          Text(
+                            "مدیریت مقاله ها",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      debugPrint("write podcast");
+                    },
+                    child: Container(
+                      color: Colors.white,
+                      child: Row(
+                        children: [
+                          Assets.icons.writePodcastIcon.image(
+                            height: 40,
+                            color: Colors.black,
+                          ),
+                          SizedBox(width: 8),
+                          Text(
+                           "مدیریت پادکست ها",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
