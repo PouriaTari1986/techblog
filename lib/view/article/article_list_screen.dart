@@ -2,8 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_blog/component/my_componnent.dart';
-import 'package:my_blog/controller/list_article_controller.dart';
-import 'package:my_blog/controller/single_article_controller.dart';
+import 'package:my_blog/controller/article/list_article_controller.dart';
+import 'package:my_blog/controller/article/single_article_controller.dart';
 import 'package:my_blog/main.dart';
 
 // ignore: must_be_immutable

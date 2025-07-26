@@ -4,12 +4,12 @@ import 'package:get/get.dart';
 import 'package:my_blog/component/my_colors.dart';
 import 'package:my_blog/component/my_strings.dart';
 import 'package:my_blog/controller/home_screen_controller.dart';
-import 'package:my_blog/controller/list_article_controller.dart';
-import 'package:my_blog/controller/single_article_controller.dart';
+import 'package:my_blog/controller/article/list_article_controller.dart';
+import 'package:my_blog/controller/article/single_article_controller.dart';
 import 'package:my_blog/gen/assets.gen.dart';
 import 'package:my_blog/component/my_componnent.dart';
-import 'package:my_blog/view/article_list_screen.dart';
-import 'package:my_blog/view/single_article_screen.dart';
+import 'package:my_blog/view/article/article_list_screen.dart';
+import 'package:my_blog/view/article/single_article_screen.dart';
 
 // ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {

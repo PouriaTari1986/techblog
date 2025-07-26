@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -80,7 +79,7 @@ class RegisterController extends GetxController {
     }
   }
 
-  routeToWriteBottomSheet() {
+  void routeToWriteBottomSheet() {
     Get.bottomSheet(
       Container(
         height: Get.height / 2.2,
@@ -98,9 +97,9 @@ class RegisterController extends GetxController {
               Row(
                 children: [
                   SvgPicture.asset(Assets.images.welcome.path, height: 60),
-                  SizedBox(width: 8),
+                  SizedBox(width: 12),
                   Text(
-                    "دونسته هات رو با بقیه به اشتراک بگذار",
+                    "دونسته هات رو با بقیه به اشتراک بگذار....",
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 17,

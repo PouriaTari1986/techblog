@@ -17,6 +17,10 @@ import 'package:vector_graphics/vector_graphics.dart' as _vg;
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/article_writing.svg
+  SvgGenImage get articleWriting =>
+      const SvgGenImage('assets/icons/article_writing.svg');
+
   /// File path: assets/icons/audiofile.png
   AssetGenImage get audiofile =>
       const AssetGenImage('assets/icons/audiofile.png');
@@ -54,6 +58,7 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<dynamic> get values => [
+    articleWriting,
     audiofile,
     hashtag,
     home,

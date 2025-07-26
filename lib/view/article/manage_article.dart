@@ -7,8 +7,8 @@ import 'package:my_blog/gen/assets.gen.dart';
 
 
 // ignore: must_be_immutable
-class RegisterIntro extends StatelessWidget {
-   RegisterIntro({super.key});
+class ManagedArticle extends StatelessWidget {
+   ManagedArticle({super.key});
 
 
    var registerController = Get.find<RegisterController>();

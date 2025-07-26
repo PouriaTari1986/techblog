@@ -133,7 +133,7 @@ class MainScreen extends StatelessWidget {
 
 // ignore: must_be_immutable
 class BottomNavigation extends StatelessWidget {
-    BottomNavigation({
+    const BottomNavigation({
     
     required this.size,
     required this.bodyMargin,

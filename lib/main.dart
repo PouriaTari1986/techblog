@@ -7,7 +7,7 @@ import 'package:my_blog/binding.dart';
 import 'package:my_blog/component/my_colors.dart';
 import 'package:my_blog/view/main_screen/main_screen.dart';
 import 'package:my_blog/view/my_http_overrides.dart';
-import 'package:my_blog/view/single_article_screen.dart';
+import 'package:my_blog/view/article/single_article_screen.dart';
 import 'package:my_blog/view/splash_screen.dart';
 
 void main() async {
