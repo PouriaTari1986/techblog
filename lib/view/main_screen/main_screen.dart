@@ -187,7 +187,7 @@ class BottomNavigation extends StatelessWidget {
                 ),
 
                 IconButton(
-                  onPressed: (() => changeScreen(2)),
+                  onPressed: (() => changeScreen(1)),
                   icon: ImageIcon(
                     Assets.icons.user.provider(),
                     size: 40,

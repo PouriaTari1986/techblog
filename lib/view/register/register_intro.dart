@@ -80,7 +80,7 @@ class RegisterIntro extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(24),
                     child: TextField(
-                      controller: registerController.activeCodeTextEditingController,
+                      controller: registerController.emailTextEditingController,
                       style: textTheme.titleMedium,
                       textAlign: TextAlign.center,
                       decoration: InputDecoration(
@@ -90,10 +90,10 @@ class RegisterIntro extends StatelessWidget {
                     ),
                   ),
                   ElevatedButton(onPressed: (() {
-                    
+                     registerController.register();
                     Navigator.pop(context);
                     _activationCodeInputButtomSheet(context, size, textTheme);
-                       registerController.register();              
+                                     
                   }),
                   
                    child: Text("ادامه")),
@@ -138,7 +138,7 @@ class RegisterIntro extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(24),
                     child: TextField(
-                      controller: registerController.emailTextEditingController,
+                      controller: registerController.activeCodeTextEditingController,
                       style: textTheme.titleMedium,
                       textAlign: TextAlign.center,
                       decoration: InputDecoration(
@@ -148,9 +148,9 @@ class RegisterIntro extends StatelessWidget {
                     ),
                   ),
                   ElevatedButton(onPressed: (() {
-                    registerController.verify();
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => const MyCat()));
+                   registerController.verify();
+                    // Navigator.of(context).pushReplacement(
+                    //   MaterialPageRoute(builder: (context) => const MyCat()));
                   }), child: Text("ادامه")),
                 ],
               ),

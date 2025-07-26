@@ -5,7 +5,7 @@ static const String hostDlUrl = 'https://techblog.sasansafari.com';
 static const String getHomeItems = "${baseUrl}home/?command=index";
 static const String getArticleList = "${baseUrl}article/get.php?command=new&user_id=";
 
-static const String postRegiter = "${baseUrl}register/action.php";
+static const String postRegiter = "https://techblog.sasansafari.com/Techblog/api/register/action.php";
 
 
 }
