@@ -5,7 +5,7 @@ import 'package:my_blog/component/my_strings.dart';
 import 'package:my_blog/gen/assets.gen.dart';
 import 'package:my_blog/view/main_screen/home_screen.dart';
 import 'package:my_blog/view/main_screen/profile_screen.dart';
-import 'package:my_blog/view/register_intro.dart';
+import 'package:my_blog/view/register/register_intro.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -110,7 +110,7 @@ class MainScreen extends StatelessWidget {
                 index: selectedPageIndex.value,
                 children: [
                   HomeScreen(bodyMargin: bodyMargin, textTheme: textTheme, size: size),
-                  RegisterIntro(),
+                  
                   ProfileScreen(bodyMargin: bodyMargin, textTheme: textTheme, size: size),
                 ],
               )),
@@ -178,7 +178,7 @@ class BottomNavigation extends StatelessWidget {
                 ),
 
                 IconButton(
-                  onPressed: () => changeScreen(1),
+                  onPressed: () => Get.to(RegisterIntro()),
                   icon: ImageIcon(
                     Assets.icons.register.provider(),
                     size: 40,

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:my_blog/component/my_colors.dart';
 import 'package:my_blog/component/my_strings.dart';
 import 'package:my_blog/controller/home_screen_controller.dart';
+import 'package:my_blog/controller/list_article_controller.dart';
 import 'package:my_blog/controller/single_article_controller.dart';
 import 'package:my_blog/gen/assets.gen.dart';
 import 'package:my_blog/component/my_componnent.dart';
@@ -64,14 +65,24 @@ class HomeScreen extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemCount: homeScreenController.tagList.length,
           itemBuilder: ((context, index) {
-            return Padding(
-              padding: EdgeInsets.fromLTRB(
-                0,
-                8,
-                index == 0 ? bodyMargin : 15,
-                8,
+            return GestureDetector(
+              onTap: () async{
+                var tagId = singleArticleController.tagList[index].id!;
+                  await Get.find<ListArticleController>().getArticleListWithTagsId(tagId);
+
+                    Get.to(ArticleListScreen());
+
+              },
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(
+                  0,
+                  8,
+                  index == 0 ? bodyMargin : 15,
+                  8,
+                ),
+                child: TagList(textTheme: textTheme, index: index,  
+                ),
               ),
-              child: TagList(textTheme: textTheme, index: index),
             );
           }),
         ),
@@ -237,7 +248,7 @@ class HomeScreen extends StatelessWidget {
                   homeScreenController.topVisitedList[index].id,
                   
                 );
-                Get.to(SingleArticleScreen());
+                Get.to((SingleArticleScreen()));
               }),
               child: Padding(
                 padding: EdgeInsets.only(right: index == 0 ? bodyMargin : 15),

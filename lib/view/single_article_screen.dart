@@ -9,11 +9,15 @@ import 'package:my_blog/controller/list_article_controller.dart';
 import 'package:my_blog/controller/single_article_controller.dart';
 import 'package:my_blog/gen/assets.gen.dart';
 import 'package:my_blog/view/article_list_screen.dart';
+import 'package:share_plus/share_plus.dart';
 
 // ignore: must_be_immutable
 
 // ignore: must_be_immutable
 class SingleArticleScreen extends StatelessWidget {
+
+
+  ListArticleController listArticleController = Get.put(ListArticleController());
   var singleArticleController = Get.find<SingleArticleController>();
 
   SingleArticleScreen({super.key});
@@ -62,10 +66,13 @@ class SingleArticleScreen extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   SizedBox(width: 12),
-                                  Icon(
-                                    Icons.arrow_back,
-                                    color: Colors.white,
-                                    size: 24,
+                                  InkWell(
+                                    onTap: () => Get.to(ArticleListScreen()),
+                                    child: Icon(
+                                      Icons.arrow_back,
+                                      color: Colors.white,
+                                      size: 24,
+                                    ),
                                   ),
                                   Expanded(child: SizedBox()),
                                   Icon(
@@ -74,10 +81,20 @@ class SingleArticleScreen extends StatelessWidget {
                                     size: 24,
                                   ),
                                   SizedBox(width: 12),
-                                  Icon(
-                                    Icons.share,
-                                    color: Colors.white,
-                                    size: 24,
+                                  InkWell(
+                                    onTap: () async=> await SharePlus.instance.share(
+                                      ShareParams(text: "لذت ببرید")
+                                    ),
+                                    child: InkWell(
+                                      onTap: ()async=>await SharePlus.instance.share(ShareParams(
+                                        text: MyStrings.shareText
+                                      )),
+                                      child: Icon(
+                                        Icons.share,
+                                        color: Colors.white,
+                                        size: 24,
+                                      ),
+                                    ),
                                   ),
                                   SizedBox(width: 12),
                                 ],
@@ -141,13 +158,22 @@ class SingleArticleScreen extends StatelessWidget {
                         ],
                       ),
                       SizedBox(height: 12),
-                      tags(textTheme),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: tags(textTheme),
+                      ),
                       SizedBox(height: 24),
                       Padding(
                         padding: const EdgeInsets.only(left: 16, bottom: 12),
-                        child: Text(
-                          MyStrings.relatedArticles,
-                          style: textTheme.headlineMedium,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            SizedBox(width: 16,),
+                            Text(
+                              MyStrings.relatedArticles,
+                              style: textTheme.headlineMedium,
+                            ),
+                          ],
                         ),
                       ),
 
@@ -284,10 +310,10 @@ Icon(
         itemBuilder: ((context, index) {
           return GestureDetector(
             onTap: () async {
-              var tagId = singleArticleController.tagList[index].id!;
+              var tagId = singleArticleController.tagList[index].id;
 
               await Get.find<ListArticleController>().getArticleListWithTagsId(
-                tagId,
+                tagId!,
               );
 
               Get.to((ArticleListScreen()));

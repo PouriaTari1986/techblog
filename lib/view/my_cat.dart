@@ -98,7 +98,7 @@ class _MyCatState extends State<MyCat> {
                             });
                           },
 
-                          child: TagList(textTheme: textTheme, index: index),
+                          child: TagList(textTheme: textTheme, index: index,),
                         );
                       },
                     ),
