@@ -6,6 +6,7 @@ import 'package:my_blog/component/api_constant.dart';
 import 'package:my_blog/component/my_strings.dart';
 import 'package:my_blog/component/storage_const.dart';
 import 'package:my_blog/gen/assets.gen.dart';
+import 'package:my_blog/main.dart';
 import 'package:my_blog/services/dio_service.dart';
 import 'package:my_blog/view/main_screen/main_screen.dart';
 import 'package:my_blog/view/register/register_intro.dart';
@@ -50,14 +51,14 @@ class RegisterController extends GetxController {
     switch (status) {
       case 'verified':
         var box = GetStorage();
-        box.write(token, response.data['token']);
-        box.write(userId, response.data['user_id']);
+        box.write(StorageConst.token, response.data['token']);
+        box.write(StorageConst.userId, response.data['user_id']);
 
         // ignore: prefer_interpolation_to_compose_strings
-        debugPrint("read:::" + box.read(token));
+        debugPrint("read:::" + box.read(StorageConst.token));
 
         // ignore: prefer_interpolation_to_compose_strings
-        debugPrint("{read:::" + box.read(userId));
+        debugPrint("{read:::" + box.read(StorageConst.userId));
         Get.offAll((MainScreen()));
         break;
       case 'incorrect_code':
@@ -72,7 +73,7 @@ class RegisterController extends GetxController {
   }
 
   void toggleLogin() {
-    if (GetStorage().read(token) == null) {
+    if (GetStorage().read(StorageConst.token) == null) {
       Get.to(RegisterIntro());
     } else {
       routeToWriteBottomSheet();
@@ -126,7 +127,8 @@ class RegisterController extends GetxController {
                   GestureDetector(
                     
                     onTap: () {
-                      debugPrint("go to writing article");
+                      // debugPrint("go to writing article");
+                      Get.toNamed(NamedRoute().managedArtice);
                     },
                     child: Container(
                       color: Colors.white,

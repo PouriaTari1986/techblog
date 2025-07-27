@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:my_blog/binding.dart';
 import 'package:my_blog/component/my_colors.dart';
+import 'package:my_blog/view/article/manage_article.dart';
 import 'package:my_blog/view/main_screen/main_screen.dart';
 import 'package:my_blog/view/my_http_overrides.dart';
 import 'package:my_blog/view/article/single_article_screen.dart';
@@ -31,15 +32,20 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       getPages: [
         GetPage(
-          name: routMainScreen,
+          name: NamedRoute().routMainScreen,
           page: (() => MainScreen()),
           binding: RegisteBinding(),
         ),
 
         GetPage(
-          name: routeSingleArticle,
+          name: NamedRoute().routeSingleArticle,
           page: (() => SingleArticleScreen()),
           binding: ArticleBinding(),
+        ),
+        GetPage(
+          name: NamedRoute().managedArtice,
+          page: (() => ManagedArticle()),
+          binding: ArticleManagerBinding(),
         ),
       ],
       theme: lightTheme(textTheme),
@@ -125,5 +131,11 @@ class MyApp extends StatelessWidget {
   }
 }
 
+
+class NamedRoute{
 String routMainScreen = "/MainScreen";
 String routeSingleArticle = "/SingleArticle";
+String managedArtice = "/ManageArticle";
+
+
+}

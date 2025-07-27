@@ -35,7 +35,7 @@ class ArticleListScreen extends StatelessWidget {
                 await singleArticleController.getArticleInfo(
                 listArticleController.articleList[index].id
                 );
-               await Get.toNamed(routeSingleArticle);
+               await Get.toNamed(NamedRoute().routeSingleArticle);
               },
 
               child: Padding(

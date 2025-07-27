@@ -123,7 +123,10 @@ class Loading extends StatelessWidget {
                 color: SolidColors.primaryColor,
                 shape: BoxShape.circle
               ),
-              child: Icon(Icons.keyboard_arrow_right,color: Colors.white,),
+              child: GestureDetector(
+                
+                onTap: () => Get.back(),
+                child: Icon(Icons.keyboard_arrow_right,color: Colors.white,)),
 
            ) 
            ),

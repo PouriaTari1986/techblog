@@ -16,9 +16,12 @@ class MyStrings {
   www.sasansafari.com''';
   static const String activatedCode = "کد فعال سازی رو وارد کن";
   static const String letsGo = "بزن بریم";
+  static const String letsGoWriting = "بریم برای نوشتن یه مقاله باحال";
   static const String imageProfileEdit = "ویرایش عکس پروفایل";
   static const String selectingCat = "دسته بندی هایی که دوست داری رو انتخاب کن";
   static const String welcome = "به تک‌بلاگ خوش اومدی\n\nبرای ارسال مطلب و پادکست باید حتما ثبت نام کنی";
+  static const String wriringArticle = """هنوز هیچ مقاله ای به جامعه گیک های فارسی 
+اضافه نکردی !!!""";
 static const String mayCat = "\nتبریک میگم ، ایمیل با موفقیت تایید شد\nلطفا اطلاعات ثبت نام رو کامل کن";
  static String gigTech =  """
 فکر کن !!  اینجا بودنت به این معناست که یک گیک تکنولوژی هستی

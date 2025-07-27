@@ -1,167 +1,151 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:my_blog/component/my_componnent.dart';
 import 'package:my_blog/component/my_strings.dart';
-import 'package:my_blog/controller/register_controller.dart';
+import 'package:my_blog/controller/article/managed_article_controller.dart';
 import 'package:my_blog/gen/assets.gen.dart';
-
 
 // ignore: must_be_immutable
 class ManagedArticle extends StatelessWidget {
-   ManagedArticle({super.key});
+  ManagedArticle({super.key});
 
-
-   var registerController = Get.find<RegisterController>();
-
+  var articleManageController = Get.find<ManagedArticleController>();
 
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
-    var size = MediaQuery.of(context).size;
+    // var size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
+        appBar: appBar(" مدیریت مقاله ها"),
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SvgPicture.asset(Assets.images.welcome.path, height: 120),
-              SizedBox(height: 25),
+          child: Obx(
+            () => articleManageController.loading.value
+                ? Loading()
+                : articleManageController.articleList.isNotEmpty
+                ? ListView.builder(
+                    physics: BouncingScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    itemCount: articleManageController.articleList.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () async {},
 
-              RichText(
-                textAlign: TextAlign.center,
-                text: TextSpan(
-                  text: MyStrings.welcome,
-                  style: textTheme.titleMedium,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 32),
-                child: ElevatedButton(
-                  onPressed: (() {
-                    _emailButtomSheet(context, size, textTheme);
-                  }),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                width: Get.width / 4,
+                                height: Get.height / 8,
+                                child: CachedNetworkImage(
+                                  imageUrl: articleManageController
+                                      .articleList[index]
+                                      .image!,
+                                  imageBuilder: (context, imageProvider) {
+                                    return Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(20),
+                                        ),
+                                        image: DecorationImage(
+                                          image: imageProvider,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    );
+                                  },
 
-                  child: Text(MyStrings.letsGo, style: textTheme.headlineLarge),
-                ),
+                                  placeholder: (context, url) => Loading(),
+                                  errorWidget: (context, url, error) => Icon(
+                                    Icons.image_not_supported_outlined,
+                                    size: 50,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(width: 16),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    width: Get.width / 2,
+                                    child: Text(
+                                      articleManageController
+                                          .articleList[index]
+                                          .title!,
+                                      style: textTheme.titleMedium,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                  SizedBox(height: 20),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        articleManageController
+                                            .articleList[index]
+                                            .author!,
+                                        style: textTheme.displaySmall,
+                                      ),
+                                      SizedBox(width: 20),
+                                      Text(
+                                        "${articleManageController.articleList[index].view!}بازدید",
+                                        style: textTheme.displaySmall,
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  )
+                : articleEmptyState(textTheme),
+          ),
+        ),
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.only(top: 32),
+          child: Padding(
+            padding:  EdgeInsets.all(8.0),
+            child: ElevatedButton(
+              style: ButtonStyle(fixedSize: WidgetStateProperty.all(Size(Get.width/3, 56))),
+              onPressed: (() {}),
+            
+              child: Text(
+                MyStrings.letsGoWriting,
+                style: textTheme.headlineLarge,
               ),
-            ],
+            ),
           ),
         ),
       ),
     );
   }
- 
-  Future<dynamic> _emailButtomSheet(
-    BuildContext context,
-    Size size,
-    TextTheme textTheme,
-  ) {
 
-    return showModalBottomSheet(
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      context: context,
+  Widget articleEmptyState(TextTheme textTheme) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SvgPicture.asset(Assets.icons.articleWriting.path, height: 120),
+        SizedBox(height: 35),
 
-      builder: (context) {
-        return Padding(
-          padding: EdgeInsets.only(
-            bottom: MediaQuery.of(context).viewInsets.bottom,
+        RichText(
+          textAlign: TextAlign.center,
+          text: TextSpan(
+            text: MyStrings.wriringArticle,
+            style: textTheme.titleMedium,
           ),
-          child: Container(
-            height: size.height / 2,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30),
-                topRight: Radius.circular(30),
-              ),
-            ),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(MyStrings.entrEmial, style: textTheme.titleMedium),
-                  Padding(
-                    padding: const EdgeInsets.all(24),
-                    child: TextField(
-                      controller: registerController.emailTextEditingController,
-                      style: textTheme.titleMedium,
-                      textAlign: TextAlign.center,
-                      decoration: InputDecoration(
-                        hintText: "techBlog@gmail.com",
-                        hintStyle: textTheme.displayLarge,
-                      ),
-                    ),
-                  ),
-                  ElevatedButton(onPressed: (() {
-                     registerController.register();
-                    Navigator.pop(context);
-                    _activationCodeInputButtomSheet(context, size, textTheme);
-                                     
-                  }),
-                  
-                   child: Text("ادامه")),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }  
-  Future<dynamic> _activationCodeInputButtomSheet(
-    BuildContext context,
-    Size size,
-    TextTheme textTheme,
-  ) {
-
-    return showModalBottomSheet(
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      context: context,
-
-      builder: (context) {
-        return Padding(
-          padding: EdgeInsets.only(
-            bottom: MediaQuery.of(context).viewInsets.bottom,
-          ),
-          child: Container(
-            height: size.height / 2,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30),
-                topRight: Radius.circular(30),
-              ),
-            ),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(MyStrings.activatedCode, style: textTheme.titleMedium),
-                  Padding(
-                    padding: const EdgeInsets.all(24),
-                    child: TextField(
-                      controller: registerController.activeCodeTextEditingController,
-                      style: textTheme.titleMedium,
-                      textAlign: TextAlign.center,
-                      decoration: InputDecoration(
-                        hintText: "******",
-                        hintStyle: textTheme.displayLarge,
-                      ),
-                    ),
-                  ),
-                  ElevatedButton(onPressed: (() {
-                   registerController.verify();
-                   
-                  
-                  }), child: Text("ادامه")),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
+        ),
+        
+      ],
     );
   }
 }

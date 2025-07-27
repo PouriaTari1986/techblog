@@ -133,7 +133,7 @@ class MainScreen extends StatelessWidget {
 
 // ignore: must_be_immutable
 class BottomNavigation extends StatelessWidget {
-    const BottomNavigation({
+     BottomNavigation({
     
     required this.size,
     required this.bodyMargin,
@@ -143,7 +143,7 @@ class BottomNavigation extends StatelessWidget {
   final Size size;
   final double bodyMargin;
   final Function(int value) changeScreen;
-
+RegisterController registerController = Get.put(RegisterController());
 
   @override
   Widget build(BuildContext context) {
