@@ -5,7 +5,6 @@ import 'package:my_blog/component/constant/my_colors.dart';
 import 'package:my_blog/component/text_style.dart';
 import 'package:my_blog/controller/home_screen_controller.dart';
 import 'package:my_blog/gen/assets.gen.dart';
-import 'package:my_blog/view/article/article_list_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class TechDivider extends StatelessWidget {
@@ -136,19 +135,16 @@ class SeeMore extends StatelessWidget {
   String title;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: (() => Get.to(ArticleListScreen())),
-      child: SizedBox(
-        height: 32,
-        child: Padding(
-          padding: EdgeInsets.only(right: bodyMargin, bottom: 8),
-          child: Row(
-            children: [
-              Assets.icons.write.image(color: SolidColors.seeMore, height: 30),
-              SizedBox(width: 8),
-              Text(title, style: textTheme.headlineMedium),
-            ],
-          ),
+    return SizedBox(
+      height: 32,
+      child: Padding(
+        padding: EdgeInsets.only(right: bodyMargin, bottom: 8),
+        child: Row(
+          children: [
+            Assets.icons.write.image(color: SolidColors.seeMore, height: 30),
+            SizedBox(width: 8),
+            Text(title, style: textTheme.headlineMedium),
+          ],
         ),
       ),
     );

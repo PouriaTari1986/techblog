@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:my_blog/component/api_constant.dart';
@@ -17,6 +18,7 @@ class ManagedArticleController extends GetxController {
   ).obs;
   RxList<ArticleModel> articleList = RxList.empty();
   RxList<TagsModel> tagList = RxList.empty();
+  TextEditingController titleEditingController = TextEditingController();
 
 RxBool loading = false.obs;
 
@@ -40,4 +42,12 @@ RxBool loading = false.obs;
       loading = false.obs;
     }
   }
+
+updateTitle(){
+
+  articleInfoModel.update((val){
+
+    val!.title = titleEditingController.text;
+  });
+}
 }

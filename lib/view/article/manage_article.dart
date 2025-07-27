@@ -13,7 +13,6 @@ class ManagedArticle extends StatelessWidget {
   ManagedArticle({super.key});
 
   var articleManageController = Get.find<ManagedArticleController>();
-
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
