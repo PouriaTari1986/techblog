@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:my_blog/binding.dart';
-import 'package:my_blog/component/my_colors.dart';
+import 'package:my_blog/component/constant/my_colors.dart';
 import 'package:my_blog/view/article/manage_article.dart';
+import 'package:my_blog/view/article/single_manage_article.dart';
 import 'package:my_blog/view/main_screen/main_screen.dart';
 import 'package:my_blog/view/my_http_overrides.dart';
 import 'package:my_blog/view/article/single_article_screen.dart';
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: NamedRoute().routMainScreen,
           page: (() => MainScreen()),
-          binding: RegisteBinding(),
+          binding: RegisterBinding(),
         ),
 
         GetPage(
@@ -45,6 +46,11 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: NamedRoute().managedArtice,
           page: (() => ManagedArticle()),
+          binding: ArticleManagerBinding(),
+        ),
+        GetPage(
+          name: NamedRoute().singleManageArticle,
+          page: (() => SingleManageArticle()),
           binding: ArticleManagerBinding(),
         ),
       ],
@@ -136,6 +142,7 @@ class NamedRoute{
 String routMainScreen = "/MainScreen";
 String routeSingleArticle = "/SingleArticle";
 String managedArtice = "/ManageArticle";
+String singleManageArticle = "/SingleManageArticle";
 
 
 }

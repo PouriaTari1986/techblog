@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:my_blog/component/my_strings.dart';
+import 'package:my_blog/component/constant/my_strings.dart';
 import 'package:my_blog/controller/register_controller.dart';
 import 'package:my_blog/gen/assets.gen.dart';
 

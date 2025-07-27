@@ -15,9 +15,10 @@ class ArticleInfoModel {
   bool? isFavorite;
 
   ArticleInfoModel(
- 
-
-   
+  
+   this.title,
+   this.content,
+   this.image,
   );
 
   ArticleInfoModel.fromJson(Map<String, dynamic> element) {

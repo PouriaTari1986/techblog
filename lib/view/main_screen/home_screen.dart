@@ -1,13 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_blog/component/my_colors.dart';
-import 'package:my_blog/component/my_strings.dart';
+import 'package:my_blog/component/constant/my_colors.dart';
+import 'package:my_blog/component/constant/my_strings.dart';
 import 'package:my_blog/controller/home_screen_controller.dart';
 import 'package:my_blog/controller/article/list_article_controller.dart';
 import 'package:my_blog/controller/article/single_article_controller.dart';
 import 'package:my_blog/gen/assets.gen.dart';
-import 'package:my_blog/component/my_componnent.dart';
+import 'package:my_blog/component/constant/my_componnent.dart';
 import 'package:my_blog/view/article/article_list_screen.dart';
 import 'package:my_blog/view/article/single_article_screen.dart';
 
@@ -40,7 +40,7 @@ class HomeScreen extends StatelessWidget {
             
                 homePageTaglist(),
                 SizedBox(height: 16),
-                seeMoreBlog(),
+                SeeMore(bodyMargin: bodyMargin, textTheme: textTheme, size: size, title: MyStrings.viewHottestBlog,),
                 SizedBox(height: 16),
             
                 topVisited(),
@@ -85,25 +85,6 @@ class HomeScreen extends StatelessWidget {
               ),
             );
           }),
-        ),
-      ),
-    );
-  }
-
-  Widget seeMoreBlog() {
-    return GestureDetector(
-      onTap: (()=>Get.to(ArticleListScreen())),
-      child: SizedBox(
-        height: 32,
-        child: Padding(
-          padding: EdgeInsets.only(right: bodyMargin, bottom: 8),
-          child: Row(
-            children: [
-              Assets.icons.write.image(color: SolidColors.seeMore, height: 30),
-              SizedBox(width: 8),
-              Text(MyStrings.viewHottestBlog, style: textTheme.headlineMedium),
-            ],
-          ),
         ),
       ),
     );

@@ -8,6 +8,8 @@ class MyStrings {
   static const String articleList = "لیست مقاله ها";
   static const String podcastList = "لیست پادکست ها";
   static const String myFavoriteBlog = "مقالات مورد علاقه من";
+  static const String editingTheMainContent = "ویرایش متن اصلی مقاله";
+  static const String chooseThetags = "انتخاب دسته بندی ";
   static const String myFavoritePodcast = "پادکست های مورد علاقه من";
   static const String logOut = "خروج از حساب کاربری";
   static const String githubUrl = "https://github.com/sasansafari/techblog";
@@ -15,6 +17,7 @@ class MyStrings {
   static const String shareText = ''' من از تک  بلاگ استفاده میکنم،تو هم داشته باش 
   www.sasansafari.com''';
   static const String activatedCode = "کد فعال سازی رو وارد کن";
+  static const String editingArticle = "ویرایش عنوان مقاله";
   static const String letsGo = "بزن بریم";
   static const String letsGoWriting = "بریم برای نوشتن یه مقاله باحال";
   static const String imageProfileEdit = "ویرایش عکس پروفایل";

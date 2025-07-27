@@ -2,10 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:my_blog/component/my_componnent.dart';
-import 'package:my_blog/component/my_strings.dart';
+import 'package:my_blog/component/constant/my_componnent.dart';
+import 'package:my_blog/component/constant/my_strings.dart';
 import 'package:my_blog/controller/article/managed_article_controller.dart';
 import 'package:my_blog/gen/assets.gen.dart';
+import 'package:my_blog/main.dart';
 
 // ignore: must_be_immutable
 class ManagedArticle extends StatelessWidget {
@@ -22,7 +23,7 @@ class ManagedArticle extends StatelessWidget {
         appBar: appBar(" مدیریت مقاله ها"),
         body: Center(
           child: Obx(
-            () => articleManageController.loading.value
+            () => articleManageController.loading.value== false
                 ? Loading()
                 : articleManageController.articleList.isNotEmpty
                 ? ListView.builder(
@@ -108,17 +109,19 @@ class ManagedArticle extends StatelessWidget {
                       );
                     },
                   )
-                : articleEmptyState(textTheme),
+                : articleEmptyState(textTheme)
           ),
         ),
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.only(top: 32),
           child: Padding(
-            padding:  EdgeInsets.all(8.0),
+            padding:  EdgeInsets.all(16),
             child: ElevatedButton(
               style: ButtonStyle(fixedSize: WidgetStateProperty.all(Size(Get.width/3, 56))),
-              onPressed: (() {}),
-            
+              onPressed: (() {
+                Get.toNamed(NamedRoute().singleManageArticle);
+              }),
+                
               child: Text(
                 MyStrings.letsGoWriting,
                 style: textTheme.headlineLarge,

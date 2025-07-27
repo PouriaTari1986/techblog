@@ -6,14 +6,15 @@ import 'package:my_blog/controller/register_controller.dart';
 class ArticleBinding implements Bindings {
   @override
   void dependencies() {
-    Get.put(ListArticleController());
 
-    Get.lazyPut(()=>ListArticleController());
+
+    Get.lazyPut(()=> ListArticleController());
+
     
 
   }
 }
-class RegisteBinding implements Bindings {
+class RegisterBinding implements Bindings {
   @override
   void dependencies() {
     Get.put(RegisterController());
@@ -22,6 +23,6 @@ class RegisteBinding implements Bindings {
 class ArticleManagerBinding implements Bindings {
   @override
   void dependencies() {
-    Get.put(ManagedArticleController());
+    Get.lazyPut(()=> ManagedArticleController());
   }
 }
