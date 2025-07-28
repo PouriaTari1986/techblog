@@ -1,5 +1,5 @@
 
-class ApiYrlConstant {
+class ApiUrlConstant {
 
 static const String baseUrl = 'https://techblog.sasansafari.com/Techblog/api/';
 static const String hostDlUrl = 'https://techblog.sasansafari.com';

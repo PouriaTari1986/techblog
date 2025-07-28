@@ -8,10 +8,11 @@ import 'package:my_blog/component/constant/storage_const.dart';
 import 'package:my_blog/gen/assets.gen.dart';
 import 'package:my_blog/main.dart';
 import 'package:my_blog/services/dio_service.dart';
-import 'package:my_blog/view/main_screen/main_screen.dart';
 import 'package:my_blog/view/register/register_intro.dart';
 
 class RegisterController extends GetxController {
+
+  
   TextEditingController emailTextEditingController = TextEditingController();
 
   TextEditingController activeCodeTextEditingController =
@@ -25,8 +26,8 @@ class RegisterController extends GetxController {
       'email': emailTextEditingController.text,
       'command': 'register',
     };
-
-    var response = await DioService().postMethod(map, ApiYrlConstant.postRegiter);
+    
+    var response = await DioService().postMethod(map, ApiUrlConstant.postRegiter);
 
     email = emailTextEditingController.text;
     userId = response.data['user_id'];
@@ -42,7 +43,7 @@ class RegisterController extends GetxController {
       'code': activeCodeTextEditingController.text,
     };
 
-    var response = await DioService().postMethod(map, ApiYrlConstant.postRegiter);
+    var response = await DioService().postMethod(map, ApiUrlConstant.postRegiter);
 
     debugPrint(response.data.toString());
 
@@ -54,12 +55,10 @@ class RegisterController extends GetxController {
         box.write(StorageConst.token, response.data['token']);
         box.write(StorageConst.userId, response.data['user_id']);
 
-        // ignore: prefer_interpolation_to_compose_strings
-        debugPrint("read:::" + box.read(StorageConst.token));
+        debugPrint(box.read(StorageConst.token));
 
-        // ignore: prefer_interpolation_to_compose_strings
-        debugPrint("{read:::" + box.read(StorageConst.userId));
-        Get.offAll((MainScreen()));
+        debugPrint(box.read(StorageConst.userId));
+        Get.toNamed(NamedRoute().routMainScreen);
         break;
       case 'incorrect_code':
         Get.snackbar("خطا", "کد فعال سازی غلط است");

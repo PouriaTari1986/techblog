@@ -37,7 +37,7 @@ RxBool loading = false.obs;
 
     loading = true.obs;
     var response = await DioService().getMethod(
-      ApiYrlConstant.publisheArticle + GetStorage().read(StorageConst.userId));
+      ApiUrlConstant.publisheArticle + GetStorage().read(StorageConst.userId));
      
 
     if (response.statusCode == 200) {
@@ -76,7 +76,7 @@ ApiKeyArticleConstant.command: Command.store,
 ApiKeyArticleConstant.tagList: "[]",
 
 };
-var respose = await DioService().postMethod(map, ApiYrlConstant.storeArticle);
+var respose = await DioService().postMethod(map, ApiUrlConstant.storeArticle);
 
 log(respose.data.toString());
   loading.value = false;

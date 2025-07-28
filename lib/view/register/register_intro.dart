@@ -56,7 +56,7 @@ class RegisterIntro extends StatelessWidget {
     Size size,
     TextTheme textTheme,
   ) {
-
+var registerController = Get.put(RegisterController());
     return showModalBottomSheet(
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
@@ -84,19 +84,25 @@ class RegisterIntro extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(24),
                     child: TextField(
+                      
                       controller: registerController.emailTextEditingController,
                       style: textTheme.titleMedium,
                       textAlign: TextAlign.center,
                       decoration: InputDecoration(
                         hintText: "techBlog@gmail.com",
-                        hintStyle: textTheme.displayLarge,
+                        hintStyle: textTheme.displaySmall,
+                        
                       ),
                     ),
                   ),
                   ElevatedButton(onPressed: (() {
-                     registerController.register();
+                   if(GetUtils.isEmail(registerController.emailTextEditingController.value.text) ){
+                      registerController.register();
                     Navigator.pop(context);
                     _activationCodeInputButtomSheet(context, size, textTheme);
+                   }else{
+                    Get.snackbar("err", "ایمیل اشتباه است");
+                   }
                                      
                   }),
                   

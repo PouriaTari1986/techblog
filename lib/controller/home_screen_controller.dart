@@ -32,7 +32,7 @@ RxBool loading = false.obs;
 
  Future<void> getHomeItems()async{
   loading.value = true;
-  var response = await DioService().getMethod(ApiYrlConstant.getHomeItems);
+  var response = await DioService().getMethod(ApiUrlConstant.getHomeItems);
 
  if(response.statusCode==200){
 
