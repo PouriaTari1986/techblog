@@ -13,6 +13,7 @@ class MyStrings {
   static const String myFavoritePodcast = "پادکست های مورد علاقه من";
   static const String logOut = "خروج از حساب کاربری";
   static const String githubUrl = "https://github.com/sasansafari/techblog";
+  static const String theEnd = "تموم شد";
   static const String entrEmial = " لطفا ایمیلت رو وارد کن";
   static const String shareText = ''' من از تک  بلاگ استفاده میکنم،تو هم داشته باش 
   www.sasansafari.com''';

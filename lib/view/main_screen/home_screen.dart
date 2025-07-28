@@ -40,7 +40,11 @@ class HomeScreen extends StatelessWidget {
             
                 homePageTaglist(),
                 SizedBox(height: 16),
-                SeeMore(bodyMargin: bodyMargin, textTheme: textTheme, size: size, title: MyStrings.viewHottestBlog,),
+                GestureDetector(
+                  onTap: () {
+                    Get.to((ArticleListScreen()));
+                  },
+                  child: SeeMore(bodyMargin: bodyMargin, textTheme: textTheme, size: size, title: MyStrings.viewHottestBlog,)),
                 SizedBox(height: 16),
             
                 topVisited(),

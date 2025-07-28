@@ -10,8 +10,10 @@ import 'package:my_blog/component/constant/my_strings.dart';
 import 'package:my_blog/component/dimens.dart';
 import 'package:my_blog/controller/article/managed_article_controller.dart';
 import 'package:my_blog/controller/file_controller.dart';
+import 'package:my_blog/controller/home_screen_controller.dart';
 import 'package:my_blog/gen/assets.gen.dart';
 import 'package:my_blog/services/pick_file.dart';
+import 'package:my_blog/view/article/article_content_editor.dart';
 
 // ignore: must_be_immutable
 
@@ -178,7 +180,9 @@ class SingleManageArticle extends StatelessWidget {
                               ],
                             ),
                     ),
-                    SeeMore(bodyMargin: Dimens.bodyMargin, textTheme: textTheme, size: Get.size, title: MyStrings.editingTheMainContent),
+                    GestureDetector(
+                      onTap: ()=> Get.to(()=>ArticleContentEditor()),
+                      child: SeeMore(bodyMargin: Dimens.bodyMargin, textTheme: textTheme, size: Get.size, title: MyStrings.editingTheMainContent)),
                     Padding(
                       padding:  EdgeInsets.all(Dimens.halfBodyMargin),
                       child: HtmlWidget(
@@ -189,12 +193,13 @@ class SingleManageArticle extends StatelessWidget {
                             Loading(),
                       ),
                     ),
+                    
                   ],
                 ),
                 SizedBox(height: Dimens.bodyMargin,),
                 GestureDetector(
                   onTap: () {
-                    
+                    chooseCatBottomSheet( textTheme);
                   },
                   child: SeeMore(bodyMargin: Dimens.bodyMargin, textTheme: textTheme, size: Get.size, title: MyStrings.chooseThetags)),
                 SizedBox(height: 12),
@@ -202,7 +207,29 @@ class SingleManageArticle extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   // child: tags(textTheme),
                 ),
-               
+                Padding(
+                      padding:  EdgeInsets.all(Dimens.halfBodyMargin),
+
+                      child: Text(
+                        manageArticleController.articleInfoModel.value.catName==null?"هنوز هیچ دسته بندی انتخاب نشده": 
+                        manageArticleController.articleInfoModel.value.catName!,
+                        
+                        style: textTheme.titleMedium,
+                      ),
+                    ),
+                      ElevatedButton(
+          
+          onPressed: (()async=> await manageArticleController.storeArticle()),
+          child: Container(
+            height: Dimens.bodyMargin,
+            width: Get.width/6,
+            decoration: BoxDecoration(
+              color: SolidColors.primaryColor,
+              borderRadius: BorderRadius.all(Radius.circular(8))
+            ),
+            child: Center(child: Text(
+              manageArticleController.loading.value? "صبر کنید...":
+              MyStrings.theEnd,style: textTheme.headlineSmall,))))
               ],
             ),
           ),
@@ -211,43 +238,89 @@ class SingleManageArticle extends StatelessWidget {
     );
   }
 
-  // Widget tags(TextTheme textTheme) {
-  //   return SizedBox(
-  //     height: 35,
-  //     child: ListView.builder(
-  //       itemCount: manageArticleController.tagList.length,
-  //       scrollDirection: Axis.horizontal,
-  //       itemBuilder: ((context, index) {
-  //         return GestureDetector(
-  //           onTap: () async {
-  //             var tagId = manageArticleController.tagList[index].id;
+ Widget cats(TextTheme textTheme) {
+  var homeScreenController = Get.put(HomeScreenController());
+     return SizedBox(
+       height: Get.height/1.8,
+       child: Padding(
+         padding: const EdgeInsets.all(12.0),
+         child: GridView.builder(
+          
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 5,
+            mainAxisSpacing: 5,
+            childAspectRatio: 3.6
+             ),
+           itemCount: homeScreenController.tagList.length,
+           scrollDirection: Axis.vertical,
+           itemBuilder: ((context, index) {
+             return GestureDetector(
+               onTap: () async {
+                manageArticleController.articleInfoModel.update((val) {
+                  val?.catId = homeScreenController.tagList[index].id.toString();
+                },);
 
-  //             await Get.find<ListArticleController>().getArticleListWithTagsId(
-  //               tagId!,
-  //             );
+                manageArticleController.articleInfoModel.update((val) {
+                  val?.catName = homeScreenController.tagList[index].title.toString();
+                },);
+                Get.back();
+             },
+             child: Padding(
+               padding: const EdgeInsets.only(left:12),
+               child: Container(
+                 height: 30,
+                 decoration: BoxDecoration(
+                   borderRadius: BorderRadius.all(Radius.circular(24)),
+                   color: SolidColors.primaryColor,
+                 ),
+                 child: Padding(
+                   padding: const EdgeInsets.all(8.0),
+                   child: Center(
+                     child: Text(
+                       homeScreenController.tagList[index].title!,
+                       style: textTheme.headlineSmall,
+                     ),
+                   ),
+                 ),
+               ),
+             ),
+           );
+         }),
+              ),
+       ),
+   );
+ }
 
-  //             Get.to((ArticleListScreen()));
-  //           },
-  //           child: Padding(
-  //             padding: const EdgeInsets.only(left:12),
-  //             child: Container(
-  //               height: 30,
-  //               decoration: BoxDecoration(
-  //                 borderRadius: BorderRadius.all(Radius.circular(24)),
-  //                 color: SolidColors.hintText,
-  //               ),
-  //               child: Padding(
-  //                 padding: const EdgeInsets.all(8.0),
-  //                 child: Text(
-  //                   manageArticleController.tagList[index].title!,
-  //                   style: textTheme.headlineSmall,
-  //                 ),
-  //               ),
-  //             ),
-  //           ),
-  //         );
-  //       }),
-  //     ),
-  //   );
-  // }
+
+void chooseCatBottomSheet(TextTheme textTheme){
+
+Get.bottomSheet(
+  Container(
+    height: Get.height/1.5,
+    width: Get.width,
+    decoration: BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20))
+    ),
+    child: Column(
+    
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(MyStrings.chooseThetags,style: textTheme.titleMedium,),
+          
+        ),
+        SizedBox(height: 8,),
+        cats(textTheme),
+      
+      ],
+    ),
+  ),
+  
+  isScrollControlled: true,
+  persistent: true
+);
+}
+
 }

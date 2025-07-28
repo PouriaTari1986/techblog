@@ -1,8 +1,13 @@
+import 'dart:developer';
+
+import 'package:dio/dio.dart'as dio;
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:my_blog/component/api_constant.dart';
+import 'package:my_blog/component/constant/command.dart';
 import 'package:my_blog/component/constant/storage_const.dart';
+import 'package:my_blog/controller/file_controller.dart';
 import 'package:my_blog/models/article_info_model.dart';
 import 'package:my_blog/models/article_model.dart';
 import 'package:my_blog/models/tags_model.dart';
@@ -32,7 +37,7 @@ RxBool loading = false.obs;
 
     loading = true.obs;
     var response = await DioService().getMethod(
-      ApiConstant.publisheArticle + GetStorage().read(StorageConst.userId));
+      ApiYrlConstant.publisheArticle + GetStorage().read(StorageConst.userId));
      
 
     if (response.statusCode == 200) {
@@ -43,11 +48,38 @@ RxBool loading = false.obs;
     }
   }
 
-updateTitle(){
+void updateTitle(){
 
   articleInfoModel.update((val){
 
     val!.title = titleEditingController.text;
   });
 }
+
+Future<void> storeArticle() async {
+var fileController = Get.find<FilePickerController>();
+
+loading.value= true;
+Map<String,dynamic> map = {
+
+ApiKeyArticleConstant.title: articleInfoModel.value.title,
+
+ApiKeyArticleConstant.content: articleInfoModel.value.content,
+
+ApiKeyArticleConstant.catID: articleInfoModel.value.catId,
+
+ApiKeyArticleConstant.userId: GetStorage().read(StorageConst.userId),
+
+ApiKeyArticleConstant.image: await dio.MultipartFile.fromFile(fileController.file.value.path!),
+
+ApiKeyArticleConstant.command: Command.store,
+ApiKeyArticleConstant.tagList: "[]",
+
+};
+var respose = await DioService().postMethod(map, ApiYrlConstant.storeArticle);
+
+log(respose.data.toString());
+  loading.value = false;
+}
+
 }

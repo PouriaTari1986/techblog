@@ -312,7 +312,7 @@ Icon(
               var tagId = singleArticleController.tagList[index].id;
 
               await Get.find<ListArticleController>().getArticleListWithTagsId(
-                tagId!,
+                tagId!
               );
 
               Get.to((ArticleListScreen()));
@@ -339,4 +339,7 @@ Icon(
       ),
     );
   }
+
+
+
 }
