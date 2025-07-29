@@ -10,6 +10,7 @@ import 'package:my_blog/view/article/single_manage_article.dart';
 import 'package:my_blog/view/main_screen/main_screen.dart';
 import 'package:my_blog/view/my_http_overrides.dart';
 import 'package:my_blog/view/article/single_article_screen.dart';
+import 'package:my_blog/view/podcasts/single_podcast.dart';
 import 'package:my_blog/view/splash_screen.dart';
 
 void main() async {
@@ -54,8 +55,8 @@ class MyApp extends StatelessWidget {
           binding: ArticleManagerBinding(),
         ),
         GetPage(
-          name: NamedRoute().singleManageArticle,
-          page: (() => SingleManageArticle()),
+          name: NamedRoute().singlePodcast,
+          page: (() => SinglePodcast()),
          
         ),
      
@@ -149,6 +150,7 @@ String routMainScreen = "/MainScreen";
 String routeSingleArticle = "/SingleArticle";
 String managedArtice = "/ManageArticle";
 String singleManageArticle = "/SingleManageArticle";
+String singlePodcast = "/SinglePodcast";
 
 
 }
