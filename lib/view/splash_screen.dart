@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Future.delayed(Duration(seconds: 3)).then((onValue){
       if(mounted){
-        Get.offAndToNamed(NamedRoute().routMainScreen);
+        Get.offAndToNamed(NamedRoute.routMainScreen);
       }
     });
   }

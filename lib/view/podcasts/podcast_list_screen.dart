@@ -25,14 +25,14 @@ class PodcatsListScreen extends StatelessWidget {
         ListView.builder(
           physics: BouncingScrollPhysics(),
           scrollDirection: Axis.vertical,
-          itemCount: podcastsListController.id.length,
+          itemCount: 4,
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: ()async {
                 // await singleArticleController.getArticleInfo(
                 // podcastsListController.podcastsList[index].id//TODO
                 // );
-               await Get.toNamed(NamedRoute().routeSingleArticle);
+               await Get.toNamed(NamedRoute.routeSingleArticle);
               },
 
               child: Padding(

@@ -34,28 +34,28 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       getPages: [
         GetPage(
-          name: NamedRoute().routMainScreen,
+          name: NamedRoute.routMainScreen,
           page: (() => MainScreen()),
           binding: RegisterBinding(),
         ),
 
         GetPage(
-          name: NamedRoute().routeSingleArticle,
+          name: NamedRoute.routeSingleArticle,
           page: (() => SingleArticleScreen()),
           binding: ArticleBinding(),
         ),
         GetPage(
-          name: NamedRoute().managedArtice,
+          name: NamedRoute.managedArtice,
           page: (() => ManagedArticle()),
           binding: ArticleManagerBinding(),
         ),
         GetPage(
-          name: NamedRoute().singleManageArticle,
+          name: NamedRoute.singleManageArticle,
           page: (() => SingleManageArticle()),
           binding: ArticleManagerBinding(),
         ),
         GetPage(
-          name: NamedRoute().singlePodcast,
+          name: NamedRoute.singlePodcast,
           page: (() => SinglePodcast()),
          
         ),
@@ -119,6 +119,11 @@ class MyApp extends StatelessWidget {
           fontWeight: FontWeight.w700,
           color: SolidColors.textTitles,
         ),
+        labelSmall: TextStyle(
+          fontSize: 17,
+          fontWeight: FontWeight.w700,
+          color: SolidColors.primaryColor,
+        ),
         titleSmall: TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w700,
@@ -144,13 +149,20 @@ class MyApp extends StatelessWidget {
   }
 }
 
+                              
+
 
 class NamedRoute{
-String routMainScreen = "/MainScreen";
-String routeSingleArticle = "/SingleArticle";
-String managedArtice = "/ManageArticle";
-String singleManageArticle = "/SingleManageArticle";
-String singlePodcast = "/SinglePodcast";
+
+NamedRoute._();
+
+static String routMainScreen = "/MainScreen";
+static String routeSingleArticle = "/SingleArticle";
+static String managedArtice = "/ManageArticle";
+static String singleManageArticle = "/SingleManageArticle";
+static String singlePodcast = "/SinglePodcast";
+
+  
 
 
 }

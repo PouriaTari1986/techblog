@@ -131,7 +131,7 @@ class RegisterController extends GetxController {
                     
                     onTap: () {
                       // debugPrint("go to writing article");
-                      Get.toNamed(NamedRoute().managedArtice);
+                      Get.toNamed(NamedRoute.managedArtice);
                     },
                     child: Container(
                       color: Colors.white,

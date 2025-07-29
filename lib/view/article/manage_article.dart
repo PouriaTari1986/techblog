@@ -118,7 +118,7 @@ class ManagedArticle extends StatelessWidget {
             child: ElevatedButton(
               style: ButtonStyle(fixedSize: WidgetStateProperty.all(Size(Get.width/3, 56))),
               onPressed: (() {
-                Get.toNamed(NamedRoute().singleManageArticle);
+                Get.toNamed(NamedRoute.singleManageArticle);
               }),
                 
               child: Text(

@@ -8,6 +8,7 @@ import 'package:my_blog/controller/article/list_article_controller.dart';
 import 'package:my_blog/controller/article/single_article_controller.dart';
 import 'package:my_blog/gen/assets.gen.dart';
 import 'package:my_blog/component/constant/my_componnent.dart';
+import 'package:my_blog/main.dart';
 import 'package:my_blog/view/article/article_list_screen.dart';
 import 'package:my_blog/view/article/single_article_screen.dart';
 
@@ -171,44 +172,49 @@ class HomeScreen extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemCount: homeScreenController.topPodcast.length,
           itemBuilder: ((context, index) {
-            return Padding(
-              padding: EdgeInsets.only(right: index == 0 ? bodyMargin : 15),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: size.height / 5.3,
-                    width: size.width / 2.4,
-                    child: CachedNetworkImage(
-                      imageUrl: homeScreenController.topPodcast[index].poster!,
-                      imageBuilder: (context, imageProvider) => Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(16)),
-                          image: DecorationImage(
-                            image: imageProvider,
-                            fit: BoxFit.cover,
+            return GestureDetector(
+              onTap: () {
+                Get.toNamed(NamedRoute.singlePodcast,arguments: homeScreenController.topPodcast[index]);
+              },
+              child: Padding(
+                padding: EdgeInsets.only(right: index == 0 ? bodyMargin : 15),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: size.height / 5.3,
+                      width: size.width / 2.4,
+                      child: CachedNetworkImage(
+                        imageUrl: homeScreenController.topPodcast[index].poster!,
+                        imageBuilder: (context, imageProvider) => Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(16)),
+                            image: DecorationImage(
+                              image: imageProvider,
+                              fit: BoxFit.cover,
+                            ),
                           ),
+                          
                         ),
-                        
-                      ),
-                      placeholder: (context, url) => Center(
-                        child: Loading()
-                      ),
-                      errorWidget: (context, url, error) => Icon(
-                        Icons.image_not_supported_outlined,
-                        color: Colors.grey,
-                        size: 50,
+                        placeholder: (context, url) => Center(
+                          child: Loading()
+                        ),
+                        errorWidget: (context, url, error) => Icon(
+                          Icons.image_not_supported_outlined,
+                          color: Colors.grey,
+                          size: 50,
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(height: 12),
-                  SizedBox(
-                    width: size.width / 2.4,
-                    child: Text(
-                      homeScreenController.topPodcast[index].title!,
-                      style: textTheme.titleMedium,
+                    SizedBox(height: 12),
+                    SizedBox(
+                      width: size.width / 2.4,
+                      child: Text(
+                        homeScreenController.topPodcast[index].title!,
+                        style: textTheme.titleMedium,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             );
           }),
