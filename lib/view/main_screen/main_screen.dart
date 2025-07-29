@@ -1,6 +1,7 @@
 // ignore_for_file: use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
+import 'package:my_blog/component/constant/decoration.dart';
 import 'package:my_blog/component/constant/my_colors.dart';
 import 'package:my_blog/component/constant/my_componnent.dart';
 import 'package:my_blog/component/constant/my_strings.dart';
@@ -162,10 +163,8 @@ RegisterController registerController = Get.put(RegisterController());
           padding: EdgeInsets.only(right: Dimens.bodyMargin, left: Dimens.bodyMargin),
           child: Container(
             height: Get.height / 8,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(35)),
-              gradient: LinearGradient(colors: GradiantColors.bottomNavigation),
-            ),
+            decoration: 
+            MyDecoration.mainGradiant,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [

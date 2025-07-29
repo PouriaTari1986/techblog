@@ -8,6 +8,7 @@ import 'package:my_blog/component/constant/storage_const.dart';
 import 'package:my_blog/gen/assets.gen.dart';
 import 'package:my_blog/main.dart';
 import 'package:my_blog/services/dio_service.dart';
+import 'package:my_blog/view/main_screen/main_screen.dart';
 import 'package:my_blog/view/register/register_intro.dart';
 
 class RegisterController extends GetxController {
@@ -51,14 +52,17 @@ class RegisterController extends GetxController {
 
     switch (status) {
       case 'verified':
-        var box = GetStorage();
-        box.write(StorageConst.token, response.data['token']);
-        box.write(StorageConst.userId, response.data['user_id']);
+        
+        
+        BoxStorage.box.write(StorageKey.token, response.data['token']);
+        BoxStorage.box.write(StorageKey.userId, response.data['user_id']);
+        
 
-        debugPrint(box.read(StorageConst.token));
+        debugPrint(BoxStorage.box.read(StorageKey.userId));
+        debugPrint(BoxStorage.box.read(StorageKey.token));
 
-        debugPrint(box.read(StorageConst.userId));
-        Get.toNamed(NamedRoute().routMainScreen);
+        
+        Get.offAll(MainScreen());
         break;
       case 'incorrect_code':
         Get.snackbar("خطا", "کد فعال سازی غلط است");
@@ -72,7 +76,7 @@ class RegisterController extends GetxController {
   }
 
   void toggleLogin() {
-    if (GetStorage().read(StorageConst.token) == null) {
+    if (GetStorage().read(StorageKey.token) == null) {
       Get.to(RegisterIntro());
     } else {
       routeToWriteBottomSheet();

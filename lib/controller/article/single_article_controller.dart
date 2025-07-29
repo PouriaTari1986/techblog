@@ -30,7 +30,7 @@ class SingleArticleController extends GetxController {
     ).obs;
     loading.value = true;
     var userId = '';
-    //TODO userId is in hard cord Mode
+   
 
         log('${ApiUrlConstant.baseUrl}article/get.php?command=info&id=$id&user_id=$userId');
        var response = await DioService().getMethod('${ApiUrlConstant.baseUrl}article/get.php?command=info&id=$id&user_id=$userId');

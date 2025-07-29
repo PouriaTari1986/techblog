@@ -37,7 +37,7 @@ RxBool loading = false.obs;
 
     loading = true.obs;
     var response = await DioService().getMethod(
-      ApiUrlConstant.publisheArticle + GetStorage().read(StorageConst.userId));
+      ApiUrlConstant.publisheArticle + GetStorage().read(StorageKey.userId));
      
 
     if (response.statusCode == 200) {
@@ -68,7 +68,7 @@ ApiKeyArticleConstant.content: articleInfoModel.value.content,
 
 ApiKeyArticleConstant.catID: articleInfoModel.value.catId,
 
-ApiKeyArticleConstant.userId: GetStorage().read(StorageConst.userId),
+ApiKeyArticleConstant.userId: GetStorage().read(StorageKey.userId),
 
 ApiKeyArticleConstant.image: await dio.MultipartFile.fromFile(fileController.file.value.path!),
 

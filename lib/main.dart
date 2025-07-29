@@ -53,6 +53,12 @@ class MyApp extends StatelessWidget {
           page: (() => SingleManageArticle()),
           binding: ArticleManagerBinding(),
         ),
+        GetPage(
+          name: NamedRoute().singleManageArticle,
+          page: (() => SingleManageArticle()),
+         
+        ),
+     
       ],
       theme: lightTheme(textTheme),
       home: SplashScreen(),

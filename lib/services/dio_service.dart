@@ -31,7 +31,7 @@ class DioService {
 
 Future<dynamic> postMethod(Map<String,dynamic> map,String url) async{
 
-var token = GetStorage().read(StorageConst.token);
+var token = GetStorage().read(StorageKey.token);
 
 if(token != null){
   dio.options.headers['authorization'] = 'token';
