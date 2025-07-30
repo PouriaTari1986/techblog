@@ -3,15 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:my_blog/binding.dart';
 import 'package:my_blog/component/constant/my_colors.dart';
-import 'package:my_blog/view/article/manage_article.dart';
-import 'package:my_blog/view/article/single_manage_article.dart';
-import 'package:my_blog/view/main_screen/main_screen.dart';
+import 'package:my_blog/route_manager/names.dart';
+import 'package:my_blog/route_manager/pages.dart';
 import 'package:my_blog/view/my_http_overrides.dart';
-import 'package:my_blog/view/article/single_article_screen.dart';
-import 'package:my_blog/view/podcasts/single_podcast.dart';
-import 'package:my_blog/view/splash_screen.dart';
 
 void main() async {
   HttpOverrides.global = MyHttpOverrides();
@@ -29,40 +24,13 @@ class MyApp extends StatelessWidget {
     var textTheme = Theme.of(context).textTheme;
 
     return GetMaterialApp(
+      initialRoute: NamedRoute.initialRoute,
       locale: const Locale('fa', 'IR'),
       textDirection: TextDirection.rtl,
+      
       debugShowCheckedModeBanner: false,
-      getPages: [
-        GetPage(
-          name: NamedRoute.routMainScreen,
-          page: (() => MainScreen()),
-          binding: RegisterBinding(),
-        ),
-
-        GetPage(
-          name: NamedRoute.routeSingleArticle,
-          page: (() => SingleArticleScreen()),
-          binding: ArticleBinding(),
-        ),
-        GetPage(
-          name: NamedRoute.managedArtice,
-          page: (() => ManagedArticle()),
-          binding: ArticleManagerBinding(),
-        ),
-        GetPage(
-          name: NamedRoute.singleManageArticle,
-          page: (() => SingleManageArticle()),
-          binding: ArticleManagerBinding(),
-        ),
-        GetPage(
-          name: NamedRoute.singlePodcast,
-          page: (() => SinglePodcast()),
-         
-        ),
-     
-      ],
+      getPages: Pages.pages,
       theme: lightTheme(textTheme),
-      home: SplashScreen(),
     );
   }
 
@@ -152,17 +120,3 @@ class MyApp extends StatelessWidget {
                               
 
 
-class NamedRoute{
-
-NamedRoute._();
-
-static String routMainScreen = "/MainScreen";
-static String routeSingleArticle = "/SingleArticle";
-static String managedArtice = "/ManageArticle";
-static String singleManageArticle = "/SingleManageArticle";
-static String singlePodcast = "/SinglePodcast";
-
-  
-
-
-}

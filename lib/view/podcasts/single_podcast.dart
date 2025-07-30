@@ -10,7 +10,6 @@ import 'package:my_blog/component/dimens.dart';
 import 'package:my_blog/controller/podcasts/podcats_file_controller.dart';
 import 'package:my_blog/gen/assets.gen.dart';
 import 'package:my_blog/models/podcast_model.dart';
-import 'package:my_blog/view/podcasts/podcast_list_screen.dart';
 import 'package:share_plus/share_plus.dart';
 
 // ignore: must_be_immutable
@@ -70,7 +69,7 @@ class SinglePodcast extends StatelessWidget {
                               children: [
                                 SizedBox(width: 12),
                                 InkWell(
-                                  onTap: () => Get.to(PodcatsListScreen()),
+                                  onTap: () => Get.back(),
                                   child: Icon(
                                     Icons.arrow_back,
                                     color: Colors.white,
@@ -150,6 +149,7 @@ class SinglePodcast extends StatelessWidget {
                             return GestureDetector(
                               onTap: () async {
                                 await controller.player.seek(Duration.zero,index: index);
+                                controller.timerCheck();
                                  controller.currentFileIndex.value =
                                   controller.player.currentIndex!;
                               },
@@ -220,10 +220,24 @@ class SinglePodcast extends StatelessWidget {
                             thumbColor: Colors.yellow,
                             progress: controller.progressValue.value, 
                             total: controller.player.duration??Duration(seconds: 0),
-                            onSeek: (position) {
+                            onSeek: (position) async {
+                              controller.player.seek(position);
                               controller.player.playing?
                               controller.startProgress():
                               controller.timer!.cancel();
+                              controller.startProgress();
+
+                              
+                              if(controller.player.playing){
+                                controller.startProgress();
+                              }else{
+                                if(position<= Duration(seconds: 0)){
+                                 await controller.player.seekToNext();
+                                  controller.currentFileIndex.value =controller.player.currentIndex!;
+                                  controller.timerCheck();
+                                }
+                              }
+                              
                             },
                             
                             ),
@@ -234,8 +248,11 @@ class SinglePodcast extends StatelessWidget {
                             GestureDetector(
                               onTap: () async {
                                 await controller.player.seekToNext();
+                                
+                              
                                 controller.currentFileIndex.value =
                                     controller.player.currentIndex!;
+                                    controller.timerCheck();
                               },
                     
                               child: Icon(
@@ -259,7 +276,6 @@ class SinglePodcast extends StatelessWidget {
                                     controller.player.playing;
                                 controller.currentFileIndex.value =
                                     controller.player.currentIndex!;
-                                   
                               },
                               child: Obx(
                                 () => Icon(
@@ -274,8 +290,10 @@ class SinglePodcast extends StatelessWidget {
                             GestureDetector(
                               onTap: () async {
                                 await controller.player.seekToPrevious();
+                                
                                 controller.currentFileIndex.value =
                                     controller.player.currentIndex!;
+                                    controller.timerCheck();
                               },
                     
                               child: Icon(
@@ -293,7 +311,7 @@ class SinglePodcast extends StatelessWidget {
                               },
                     
                               child: Icon(Icons.repeat,color: 
-                                controller.isLoopAll.value?Colors.blue:Colors.white),
+                                controller.isLoopAll.value?const Color.fromARGB(255, 19, 96, 160):Colors.white),
                             ),
                           ],
                         ),

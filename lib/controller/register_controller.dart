@@ -6,7 +6,7 @@ import 'package:my_blog/component/api_constant.dart';
 import 'package:my_blog/component/constant/my_strings.dart';
 import 'package:my_blog/component/constant/storage_const.dart';
 import 'package:my_blog/gen/assets.gen.dart';
-import 'package:my_blog/main.dart';
+import 'package:my_blog/route_manager/names.dart';
 import 'package:my_blog/services/dio_service.dart';
 import 'package:my_blog/view/main_screen/main_screen.dart';
 import 'package:my_blog/view/register/register_intro.dart';

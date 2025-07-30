@@ -1,3 +1,4 @@
+
 import 'dart:async';
 
 import 'package:get/get.dart';
@@ -81,9 +82,20 @@ class SinglePodcastController extends GetxController {
     });
   }
 
+void timerCheck(){
 
+  if(player.playing){
+    startProgress();
+  }else{
+    timer!.cancel();
+    progressValue.value = Duration(seconds: 0);
+    bufferedValue.value = Duration(seconds: 0);
 
-  setLoopMode(){
+  }
+
+}
+
+  void setLoopMode(){
 
     if(isLoopAll.value){
       isLoopAll.value = false;

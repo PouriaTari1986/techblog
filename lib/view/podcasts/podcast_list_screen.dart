@@ -2,14 +2,25 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_blog/component/constant/my_componnent.dart';
+import 'package:my_blog/controller/home_screen_controller.dart';
 import 'package:my_blog/controller/podcasts/podcats_file_controller.dart';
-import 'package:my_blog/main.dart';
+import 'package:my_blog/models/podcast_model.dart';
+import 'package:my_blog/route_manager/names.dart';
 
 // ignore: must_be_immutable
 class PodcatsListScreen extends StatelessWidget {
-  PodcatsListScreen({super.key});
+ 
 
-  SinglePodcastController podcastsListController = Get.put(SinglePodcastController());
+ final String title;
+
+  late SinglePodcastController controller;
+
+  PodcastModel? podcastModel;
+
+  HomeScreenController homeScreenController = Get.put(HomeScreenController());
+
+  PodcatsListScreen({super.key, required this.title,});
+
   
   
   
@@ -25,14 +36,11 @@ class PodcatsListScreen extends StatelessWidget {
         ListView.builder(
           physics: BouncingScrollPhysics(),
           scrollDirection: Axis.vertical,
-          itemCount: 4,
+          itemCount: homeScreenController.topPodcast.length,
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: ()async {
-                // await singleArticleController.getArticleInfo(
-                // podcastsListController.podcastsList[index].id//TODO
-                // );
-               await Get.toNamed(NamedRoute.routeSingleArticle);
+               Get.toNamed(NamedRoute.singlePodcast,arguments:homeScreenController.topPodcast[index] );
               },
 
               child: Padding(
@@ -45,7 +53,7 @@ class PodcatsListScreen extends StatelessWidget {
                       height: Get.height / 8,
                       child: CachedNetworkImage(
                         imageUrl:
-                            podcastsListController.id[index].poster!,
+                            homeScreenController.topPodcast[index].poster!,
                         imageBuilder: (context, imageProvider) {
                           return Container(
                             decoration: BoxDecoration(
@@ -75,7 +83,7 @@ class PodcatsListScreen extends StatelessWidget {
                         SizedBox(
                           width: Get.width / 2,
                           child: Text(
-                            podcastsListController.id[index].title!,
+                            homeScreenController.topPodcast[index].title!,
                             style: textTheme.titleMedium,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
@@ -86,12 +94,12 @@ class PodcatsListScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              podcastsListController.id[index].author!,
+                              homeScreenController.topPodcast[index].author!,
                               style: textTheme.displaySmall,
                             ),
                             SizedBox(width: 20),
                             Text(
-                              "${podcastsListController.id[index].view!}بازدید",
+                              "${homeScreenController.topPodcast[index].view!}بازدید",
                               style: textTheme.displaySmall,
                             ),
                           ],

@@ -8,7 +8,7 @@ import 'package:my_blog/controller/article/list_article_controller.dart';
 import 'package:my_blog/controller/article/single_article_controller.dart';
 import 'package:my_blog/gen/assets.gen.dart';
 import 'package:my_blog/component/constant/my_componnent.dart';
-import 'package:my_blog/main.dart';
+import 'package:my_blog/route_manager/names.dart';
 import 'package:my_blog/view/article/article_list_screen.dart';
 import 'package:my_blog/view/article/single_article_screen.dart';
 
@@ -145,21 +145,26 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget seeMorePodcast() {
-    return Padding(
-      padding: EdgeInsets.only(right: bodyMargin, bottom: 8),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Assets.icons.podcast.image(height: 35),
-              SizedBox(width: 8),
-              Text(
-                MyStrings.viewHottestPodcast,
-                style: textTheme.headlineMedium,
-              ),
-            ],
-          ),
-        ],
+    return GestureDetector(
+      onTap: () {
+        Get.toNamed(NamedRoute.podcastList);
+      },
+      child: Padding(
+        padding: EdgeInsets.only(right: bodyMargin, bottom: 8),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Assets.icons.podcast.image(height: 35),
+                SizedBox(width: 8),
+                Text(
+                  MyStrings.viewHottestPodcast,
+                  style: textTheme.headlineMedium,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -174,7 +179,7 @@ class HomeScreen extends StatelessWidget {
           itemBuilder: ((context, index) {
             return GestureDetector(
               onTap: () {
-                Get.toNamed(NamedRoute.singlePodcast,arguments: homeScreenController.topPodcast[index]);
+                Get.toNamed(NamedRoute.podcastList,arguments: homeScreenController.topPodcast[index]);
               },
               child: Padding(
                 padding: EdgeInsets.only(right: index == 0 ? bodyMargin : 15),
